@@ -1,0 +1,145 @@
+return {
+	-- auto pairs for JSX
+	{ 'windwp/nvim-ts-autotag', opts = {} },
+	-- formatting
+	{
+		'williamboman/mason.nvim',
+		opts = function(_, opts)
+			-- fixme: doesn't work
+			table.insert(opts.ensure_installed, 'prettierd')
+		end,
+	},
+	{
+		'stevearc/conform.nvim',
+		opts = {
+			formatters_by_ft = {
+				['javascript'] = { 'prettierd' },
+				['javascriptreact'] = { 'prettierd' },
+				['typescript'] = { 'prettierd' },
+				['typescriptreact'] = { 'prettierd' },
+				['vue'] = { 'prettierd' },
+				['css'] = { 'prettierd' },
+				['scss'] = { 'prettierd' },
+				['less'] = { 'prettierd' },
+				['html'] = { 'prettierd' },
+				['json'] = { 'prettierd' },
+				['jsonc'] = { 'prettierd' },
+				['yaml'] = { 'prettierd' },
+				['graphql'] = { 'prettierd' },
+				['handlebars'] = { 'prettierd' },
+			},
+		},
+	},
+	-- LSP
+	{
+		'nvim-treesitter/nvim-treesitter',
+		opts = function(_, opts)
+			if type(opts.ensure_installed) == 'table' then
+				vim.list_extend(opts.ensure_installed, { 'typescript', 'tsx', 'javascript', 'jsdoc', 'css', 'html' })
+			end
+		end,
+	},
+
+	-- Custom LSP with styled components support and better perf
+	{
+		'pmizio/typescript-tools.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+		opts = {
+			settings = {
+				-- requires: npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
+				-- TODO: Install with mason or some other way
+				typescript_plugins = { '@styled/typescript-styled-plugin' },
+				tsserve_file_preferences = {
+					includeCompletionsForModuleExports = true,
+				},
+				expose_as_code_action = 'all',
+				complete_function_calls = false,
+				jsx_close_tag = { enable = true },
+			},
+		},
+	},
+	-- debugging
+	{
+		'microsoft/vscode-js-debug',
+		version = 'v1.*',
+		build = 'npm ci --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
+	},
+	{
+		'mxsdev/nvim-dap-vscode-js',
+		dependencies = { 'mfussenegger/nvim-dap' },
+		config = function()
+			require('dap-vscode-js').setup({
+				debugger_path = vim.fn.stdpath('data') .. '/lazy/vscode-js-debug',
+				adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+			})
+			local js_languages = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' }
+			-- todo: doesnt seem to work
+			require('dap.ext.vscode').load_launchjs(nil, {
+				['pwa-node'] = js_languages,
+				['node'] = js_languages,
+				['chrome'] = js_languages,
+				['pwa-chrome'] = js_languages,
+			})
+			for _, language in ipairs(js_languages) do
+				require('dap').configurations[language] = {
+					{
+						type = 'pwa-node',
+						request = 'launch',
+						name = 'Launch file',
+						program = '${file}',
+						cwd = '${workspaceFolder}',
+					},
+					{
+						type = 'pwa-node',
+						request = 'attach',
+						name = 'Attach',
+						processId = require('dap.utils').pick_process,
+						cwd = '${workspaceFolder}',
+					},
+					{
+						type = 'pwa-chrome',
+						request = 'launch',
+						name = 'Start Chrome with "localhost"',
+						url = 'http://localhost:3000',
+						webRoot = '${workspaceFolder}',
+						-- required for logging into google
+						userDataDir = false,
+						-- userDataDir = '${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir',
+					},
+				}
+			end
+		end,
+	},
+	-- provides TSC command and diagnostics in editor
+	{ 'dmmulroy/tsc.nvim', config = true },
+}
+
+-- performs better that typescript-tools because it limits the number of entries
+-- sent to neovim. however, it doesn't support styled components and many quick
+-- fixes. ideally, we combine the best of both worlds
+
+-- {
+-- 	'williamboman/mason.nvim',
+-- 	opts = function(_, opts)
+-- 		-- fixme: doesn't work
+-- 		table.insert(opts.ensure_installed, 'vtsls')
+-- 	end,
+-- },
+-- -- performs drastically better than tsserver because we can limit the number of entries
+-- {
+-- 	'yioneko/nvim-vtsls',
+-- 	config = function()
+-- 		local opts = require('vtsls').lspconfig
+-- 		opts.settings = {
+-- 			vtsls = {
+-- 				experimental = {
+-- 					completion = {
+-- 						enableServerSideFuzzyMatch = true,
+-- 						entriesLimit = 75,
+-- 					},
+-- 				},
+-- 			},
+-- 		}
+-- 		require('lspconfig').vtsls.setup(opts)
+-- 	end,
+-- },
