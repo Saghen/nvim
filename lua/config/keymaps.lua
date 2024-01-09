@@ -55,9 +55,10 @@ map('n', ';', ':', { desc = 'Command' })
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
 map('n', '<leader>qQ', '<cmd>qa!<cr>', { desc = 'Force quit all' })
 
--- save file
+-- ctrl based commands
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 -- map({ 'i', 'x', 'n', 's' }, '<C-S>', '<cmd>SudoWrite<cr><esc>', { desc = 'Save file with sudo' })
+map({ 'i', 'n' }, '<C-a>', 'ggVG', { desc = 'Select all' })
 
 -- better indenting
 map('v', '<', '<gv')

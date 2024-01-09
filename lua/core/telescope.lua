@@ -62,6 +62,13 @@ return {
 			local actions = require('telescope.actions')
 
 			return {
+				extensions = {
+					frecency = {
+						-- don't attempt to clean up DB
+						-- todo: wait for https://github.com/nvim-telescope/telescope-frecency.nvim/pull/162
+						auto_validate = false,
+					},
+				},
 				defaults = {
 					prompt_prefix = ' ',
 					selection_caret = ' ',

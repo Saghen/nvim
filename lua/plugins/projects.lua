@@ -42,7 +42,8 @@ return {
 					end
 
 					-- close assorted buffers
-					local buffer_filetypes = { 'qf', 'help', 'spectre_panel', 'toggleterm', 'OverseerList' }
+					local buffer_filetypes =
+						{ 'qf', 'help', 'spectre_panel', 'toggleterm', 'OverseerList', 'NeogitStatus', 'NeogitCommitMessage' }
 					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
 						local filetype = vim.fn.getbufvar(bufnr, '&filetype')
 						if vim.tbl_contains(buffer_filetypes, filetype) then

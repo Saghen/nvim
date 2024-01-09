@@ -13,6 +13,7 @@ return {
     },
 	},
 
+	-- todo: rework bindings and use
 	{
 		'nvim-treesitter/nvim-treesitter-textobjects',
 		opts = {

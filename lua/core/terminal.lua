@@ -1,6 +1,3 @@
--- todo: breaks when auto-reloading configuration
--- maybe just disable that feature though
-
 MainTerminal = nil
 
 return {
