@@ -32,8 +32,14 @@ return {
 					size = { height = 0.85 },
 				},
 				{
+					title = 'Tasks',
 					ft = 'OverseerList',
-					size = { height = 2 },
+					size = { height = 3 },
+				},
+				{
+					title = 'Symbols',
+					ft = 'aerial',
+					size = { height = 6 },
 				},
 			},
 			right = {

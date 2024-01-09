@@ -8,8 +8,9 @@ return {
 			'akinsho/nvim-toggleterm.lua',
 		},
 		keys = {
-			{ '<leader>or', '<cmd>OverseerRun<cr>', { desc = 'Open task runner' } },
-			{ '<leader>ot', '<cmd>OverseerToggle<cr>', { desc = 'Open task runner' } },
+			{ '<leader>or', '<cmd>OverseerRun<cr> | <cmd>OverseerOpen<cr>', { desc = 'Run task' } },
+			{ '<leader>ot', '<cmd>OverseerToggle<cr>', { desc = 'Toggle task runner' } },
+			{ '<leader>oo', '<cmd>OverseerOpen<cr>', { desc = 'Open task runner' } },
 		},
 		opts = {
 			strategy = 'toggleterm',

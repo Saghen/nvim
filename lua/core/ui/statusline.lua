@@ -7,14 +7,9 @@ return {
 				icons_enabled = true,
 				theme = 'auto',
 				component_separators = { left = '', right = '' },
-				section_separators = { left = '', right = '' },
-				disabled_filetypes = {
-					statusline = {},
-					winbar = {},
-				},
-				ignore_focus = {},
+				section_separators = { left = '', right = '' },
 				always_divide_middle = true,
-				globalstatus = false,
+				globalstatus = true,
 				refresh = {
 					-- todo: measure performance
 					statusline = 300,

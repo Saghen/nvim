@@ -42,8 +42,17 @@ return {
 					end
 
 					-- close assorted buffers
-					local buffer_filetypes =
-						{ 'qf', 'help', 'spectre_panel', 'toggleterm', 'OverseerList', 'NeogitStatus', 'NeogitCommitMessage' }
+					local buffer_filetypes = {
+						'qf',
+						'help',
+						'spectre_panel',
+						'toggleterm',
+						'OverseerList',
+						'NeogitStatus',
+						'NeogitCommitMessage',
+						'Trouble',
+						'aerial',
+					}
 					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
 						local filetype = vim.fn.getbufvar(bufnr, '&filetype')
 						if vim.tbl_contains(buffer_filetypes, filetype) then
@@ -54,8 +63,8 @@ return {
 			},
 			restore_hooks = {
 				post = function()
-					vim.cmd([[Neotree]])
-					vim.cmd([[wincmd p]])
+					vim.cmd([[Neotree show]])
+					vim.cmd([[AerialOpen!]])
 				end,
 			},
 		},
