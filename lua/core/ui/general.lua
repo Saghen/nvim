@@ -24,6 +24,9 @@ return {
 			notify = {
 				enabled = false,
 			},
+			popupmenu = {
+				backend = 'cmp',
+			},
 			lsp = {
 				progress = {
 					enabled = false,

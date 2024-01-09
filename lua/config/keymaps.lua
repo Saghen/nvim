@@ -9,6 +9,8 @@ local function map(mode, lhs, rhs, opts)
 	-- end
 end
 
+map('n', '<leader>h', ':%s//g<left><left>', { desc = 'Find and Replace' })
+
 -- better up/down - allows moving to wrapped lines
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
