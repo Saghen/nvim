@@ -59,7 +59,6 @@ return {
 				dockerls = {},
 				lua_ls = {},
 				rust_analyzer = {},
-				yamlls = {},
 			},
 		},
 		config = function(_, opts)
