@@ -7,6 +7,25 @@ vim.fn.sign_define('DiagnosticSignInfo', { texthl = 'DiagnosticSignInfo', text =
 
 return {
 	{
+		'folke/trouble.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		keys = {
+			{ '<leader>xx', '<cmd>Trouble<cr>', desc = 'Diagnostics' },
+			{ '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>', desc = 'Workspace Diagnostics' },
+			{ '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', desc = 'Document Diagnostics' },
+			{ '<leader>xq', '<cmd>Trouble quickfix<cr>', desc = 'Quickfix' },
+			{ '<leader>xl', '<cmd>Trouble loclist<cr>', desc = 'Location List' },
+			{ 'gR', '<cmd>Trouble lsp_references<cr>', desc = 'LSP References' },
+		},
+		opts = {
+			action_keys = {
+				previous = { 'k', '<Up' },
+				next = { 'j', '<Down>' },
+			},
+		},
+	},
+
+	{
 		'folke/todo-comments.nvim',
 		opts = {
 			keywords = {
