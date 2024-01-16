@@ -15,24 +15,27 @@ return {
 	-- files edited frecently are given higher precedence in the list index.
 	-- As the extension learns your editing habits over time, the sorting of the list is
 	-- dynamically altered to prioritize the files you're likely to need.
-	{
-		'nvim-telescope/telescope-frecency.nvim',
-		config = function()
-			require('telescope').load_extension('frecency')
-		end,
-	},
+	-- {
+	-- 	'nvim-telescope/telescope-frecency.nvim',
+	-- 	config = function()
+	-- 		require('telescope').load_extension('frecency')
+	-- 	end,
+	-- },
 	{
 		'nvim-telescope/telescope.nvim',
 		version = false, -- telescope did only one release, so use HEAD for now
 		dependencies = { 'nvim-lua/plenary.nvim' },
+		-- todo: shortcut to repeat last telescope query
 		keys = {
-			{ '<leader><space>', '<cmd>Telescope frecency workspace=CWD<cr>', desc = 'Find Files' },
+			-- { '<leader><space>', '<cmd>Telescope frecency workspace=CWD<cr>', desc = 'Find Files' },
+			{ '<leader><enter>', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
 			{ '<leader>.', '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', desc = 'Switch Buffer' },
 			{ '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
 			{ '<leader>/', '<cmd>Telescope live_grep<cr>', desc = 'Grep' },
 			{ "<leader>'", '<cmd>Telescope registers<cr>', desc = 'Registers' },
 			{ '<leader>y', '<cmd>Telescope lsp_document_symbols<cr>', desc = 'Goto Symbol' },
-			{ '<leader>Y', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
+			{ '<leader><space>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
+			{ '<leader>r', '<cmd>Telescope resume<cr>', desc = 'Resume last search' },
 			-- find
 			{ '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
 			{ '<leader>ff', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
@@ -54,7 +57,6 @@ return {
 			{ '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
 			{ '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'Jump to Mark' },
 			{ '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
-			{ '<leader>sR', '<cmd>Telescope resume<cr>', desc = 'Resume' },
 			{ '<leader>cl', '<cmd>Telescope filetypes<cr>', desc = 'Pick Language' },
 		},
 		opts = function()
@@ -68,9 +70,11 @@ return {
 						auto_validate = false,
 					},
 				},
+				lsp_dynamic_workspace_symbols = {},
 				defaults = {
 					prompt_prefix = ' ',
 					selection_caret = ' ',
+					-- todo: not working
 					-- open files in the first window that is an actual file.
 					-- use the current window if no other window is available.
 					get_selection_window = function()
@@ -84,6 +88,7 @@ return {
 						end
 						return 0
 					end,
+					file_ignore_patterns = { 'node_modules' },
 					mappings = {
 						i = {
 							['<C-Down>'] = actions.cycle_history_next,

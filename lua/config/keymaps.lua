@@ -1,12 +1,7 @@
 local function map(mode, lhs, rhs, opts)
-	-- local keys = require('lazy.core.handler').handlers.keys
-	---@cast keys LazyKeysHandler
-	-- do not create the keymap if a lazy keys handler exists
-	-- if not keys.active[keys.parse({ lhs, mode = mode }).id] then
 	opts = opts or { noremap = true }
 	opts.silent = opts.silent ~= false
 	vim.keymap.set(mode, lhs, rhs, opts)
-	-- end
 end
 
 map('n', '<leader>h', ':%s//g<left><left>', { desc = 'Find and Replace' })
@@ -37,7 +32,7 @@ map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
 map('n', ']b', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
-map('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+map('n', '<leader><backspace>', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 
 -- Clear search with <esc>
 map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsearch' })
