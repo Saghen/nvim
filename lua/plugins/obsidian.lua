@@ -11,8 +11,8 @@ return {
 	},
 	{
 		'epwalsh/obsidian.nvim',
+		enabled = false,
 		version = '*',
-		lazy = false,
 		ft = 'markdown',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		keys = {
