@@ -1,6 +1,16 @@
 return {
 	-- auto pairs for JSX
-	{ 'windwp/nvim-ts-autotag', opts = {} },
+	{
+		'windwp/nvim-ts-autotag',
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		config = function()
+			require('nvim-treesitter.configs').setup({
+				autotag = {
+					enable = true,
+				},
+			})
+		end,
+	},
 	-- formatting
 	{
 		'williamboman/mason.nvim',
@@ -40,23 +50,47 @@ return {
 		end,
 	},
 
-	-- Custom LSP with styled components support and better perf
 	{
-		'pmizio/typescript-tools.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-		opts = {
-			settings = {
-				-- requires: npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
-				-- TODO: Install with mason or some other way
-				typescript_plugins = { '@styled/typescript-styled-plugin' },
-				tsserve_file_preferences = {
-					includeCompletionsForModuleExports = true,
+		'williamboman/mason.nvim',
+		opts = function(_, opts)
+			-- fixme: doesn't work
+			table.insert(opts.ensure_installed, 'vtsls')
+		end,
+	},
+	-- performs drastically better than tsserver because we can limit the number of entries
+	-- todo: shows symbols from node_modules
+	{
+		'yioneko/nvim-vtsls',
+		config = function()
+			local opts = require('vtsls').lspconfig
+			opts.settings = {
+				typescript = {
+					preferences = {
+						preferTypeOnlyAutoImports = true,
+					},
+					workspaceSymbols = {
+						scope = 'currentProject',
+						excludeLibrarySymbols = true,
+					},
+					tsserver = {
+						pluginPaths = {
+							-- requires: npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
+							-- TODO: Install with mason or some other way
+							'~/.local/share/npm/lib/node_modules/@styled/typescript-styled-plugin',
+						},
+					},
 				},
-				expose_as_code_action = 'all',
-				complete_function_calls = false,
-				jsx_close_tag = { enable = true },
-			},
-		},
+				vtsls = {
+					experimental = {
+						completion = {
+							enableServerSideFuzzyMatch = true,
+							entriesLimit = 75,
+						},
+					},
+				},
+			}
+			require('lspconfig').vtsls.setup(opts)
+		end,
 	},
 	-- debugging
 	{
@@ -117,29 +151,3 @@ return {
 -- performs better that typescript-tools because it limits the number of entries
 -- sent to neovim. however, it doesn't support styled components and many quick
 -- fixes. ideally, we combine the best of both worlds
-
--- {
--- 	'williamboman/mason.nvim',
--- 	opts = function(_, opts)
--- 		-- fixme: doesn't work
--- 		table.insert(opts.ensure_installed, 'vtsls')
--- 	end,
--- },
--- -- performs drastically better than tsserver because we can limit the number of entries
--- {
--- 	'yioneko/nvim-vtsls',
--- 	config = function()
--- 		local opts = require('vtsls').lspconfig
--- 		opts.settings = {
--- 			vtsls = {
--- 				experimental = {
--- 					completion = {
--- 						enableServerSideFuzzyMatch = true,
--- 						entriesLimit = 75,
--- 					},
--- 				},
--- 			},
--- 		}
--- 		require('lspconfig').vtsls.setup(opts)
--- 	end,
--- },
