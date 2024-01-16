@@ -2,15 +2,13 @@ return {
 	-- snippets
 	{
 		'l3mon4d3/luasnip',
-		-- follow latest release.
-		version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = 'make install_jsregexp',
+		version = 'v2.*',
+		build = 'make install_jsregexp', -- optional
 	},
 	-- completion
 	{
 		'hrsh7th/nvim-cmp',
-		-- commit = 'abb5c7519d40314240effc70d781149c0f097af3',
+		event = 'InsertEnter',
 		version = false,
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp',
@@ -28,9 +26,6 @@ return {
 					expand = function(args)
 						require('luasnip').lsp_expand(args.body)
 					end,
-				},
-				performance = {
-					debounce = 0,
 				},
 				completion = {
 					completeopt = 'menu,menuone,noinsert',
@@ -52,17 +47,17 @@ return {
 					['<C-Space>'] = cmp.mapping.complete(),
 				}),
 				sources = cmp.config.sources({
-					{ name = 'nvim_lsp', priority = 10 },
-					{ name = 'luasnip', priority = 9 },
-					{ name = 'path', priority = 2 },
-					{ name = 'buffer', priority = 1 },
+					{ name = 'luasnip' },
+					{ name = 'nvim_lsp' },
+					{ name = 'path' },
+					{ name = 'buffer' },
 				}),
 				sorting = {
-					priority_weight = 1.0,
 					comparators = {
 						cmp.config.compare.offset,
 						cmp.config.compare.exact,
 						cmp.config.compare.score,
+						cmp.config.compare.recently_used,
 
 						-- copied from cmp-under
 						function(entry1, entry2)
@@ -78,9 +73,6 @@ return {
 						end,
 
 						cmp.config.compare.kind,
-						cmp.config.compare.sort_text,
-						cmp.config.compare.length,
-						cmp.config.compare.order,
 					},
 				},
 				window = {
