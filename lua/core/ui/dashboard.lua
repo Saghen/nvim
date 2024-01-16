@@ -1,18 +1,14 @@
 return {
 	'nvimdev/dashboard-nvim',
-	event = 'VimEnter',
 	dependencies = { 'navarasu/onedark.nvim', 'nvim-tree/nvim-web-devicons' },
-	config = function(_, opts)
-		local c = require('onedark.colors')
-		vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = c.blue })
-
-		require('dashboard').setup(opts)
-	end,
 	opts = {
 		theme = 'hyper',
 		config = {
 			week_header = {
 				enable = true,
+			},
+			project = {
+				action = 'ProjectLoad ',
 			},
 			shortcut = {
 				{
@@ -22,10 +18,10 @@ return {
 					key = 'u',
 				},
 				{
-					desc = '󰈔 Files',
+					desc = ' Projects',
 					group = 'DiagnosticSignWarn',
-					action = 'Telescope find_files',
-					key = 'f',
+					action = "lua require('telescope').extensions.projections.projections({})",
+					key = 'p',
 				},
 				{
 					desc = '󱁿 Config',

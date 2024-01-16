@@ -15,6 +15,7 @@ return {
 	{
 		'gnikdroy/projections.nvim',
 		branch = 'pre_release',
+		lazy = false,
 		keys = {
 			{ '<leader>fp', "<cmd>lua require('telescope').extensions.projections.projections({})<cr>", desc = 'Projects' },
 		},
@@ -64,6 +65,7 @@ return {
 			restore_hooks = {
 				post = function()
 					vim.cmd([[Neotree show]])
+					vim.cmd([[wincmd p]])
 					vim.cmd([[AerialOpen!]])
 				end,
 			},
@@ -88,6 +90,10 @@ return {
 					end
 				end,
 			})
+			-- Command for loading, used by dashboard
+			vim.api.nvim_create_user_command('ProjectLoad', function(opts)
+				switcher.switch(opts.args)
+			end, { nargs = 1 })
 		end,
 	},
 }
