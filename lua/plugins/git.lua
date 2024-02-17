@@ -12,9 +12,6 @@ return {
 		end,
 	},
 
-	-- show git status for lines on the left side of the buffer
-	'lewis6991/gitsigns.nvim',
-
 	-- client
 	{
 		'NeogitOrg/neogit',

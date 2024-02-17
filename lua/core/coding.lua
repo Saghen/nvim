@@ -67,7 +67,12 @@ return {
 			require('illuminate').configure(opts)
 		end,
 	},
-	{ 'echasnovski/mini.pairs', version = '*', config = true },
+	{
+		'altermo/ultimate-autopair.nvim',
+		event = { 'InsertEnter', 'CmdlineEnter' },
+		branch = 'v0.6',
+		opts = {},
+	},
 	{
 		'echasnovski/mini.surround',
 		version = '*',

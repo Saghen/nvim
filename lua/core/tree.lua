@@ -223,7 +223,7 @@ return {
 				follow_current_file = {
 					enabled = false,
 				},
-				components = require('core.ui.tree.filesystem'),
+				components = require('core.tree.filesystem'),
 				filtered_items = {
 					hide_dotfiles = false,
 					hide_gitignored = true,

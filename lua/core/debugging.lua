@@ -35,14 +35,4 @@ return {
 			end
 		end,
 	},
-
-	-- quick print statements
-	{
-		'andrewferrier/debugprint.nvim',
-		version = '*',
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-		},
-		opts = {},
-	},
 }

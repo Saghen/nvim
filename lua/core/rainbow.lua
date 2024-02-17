@@ -24,7 +24,7 @@ return {
 				},
 				scope = {
 					-- todo: extremely slow
-					enabled = false,
+					enabled = true,
 					highlight = {
 						'RainbowOrange',
 						'RainbowPurple',

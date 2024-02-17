@@ -17,6 +17,10 @@ return {
 				'gomod',
 				'gowork',
 				'gosum',
+				'goimports',
+				'gofumpt',
+				'gomodifytags',
+				'impl',
 			})
 		end,
 	},
@@ -25,7 +29,7 @@ return {
 		'williamboman/mason.nvim',
 		opts = function(_, opts)
 			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { 'goimports', 'gofumpt', 'gomodifytags', 'impl' })
+			vim.list_extend(opts.ensure_installed, { 'go', 'gomod', 'gosum' })
 		end,
 	},
 	{

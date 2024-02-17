@@ -1,15 +1,14 @@
 return {
 	'nvim-lualine/lualine.nvim',
 	event = 'VeryLazy',
-	dependencies = 'SmiteshP/nvim-navic',
 	opts = {
 		options = {
 			icons_enabled = true,
 			theme = 'auto',
 			component_separators = { left = '', right = '' },
-			section_separators = { left = '', right = '' },
+			section_separators = { left = '', right = '' },
 			always_divide_middle = true,
-			globalstatus = true,
+			globalstatus = false,
 			refresh = {
 				-- todo: measure performance
 				statusline = 300,
@@ -17,10 +16,11 @@ return {
 				winbar = 1000,
 			},
 		},
+		-- todo: add cwd and filename
 		sections = {
 			lualine_a = { 'mode' },
 			lualine_b = { 'branch', 'diff', 'diagnostics' },
-			lualine_c = {},
+			lualine_c = { 'filename' },
 			lualine_x = { 'filetype' },
 			lualine_y = { 'progress' },
 			lualine_z = { 'location' },

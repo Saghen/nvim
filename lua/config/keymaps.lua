@@ -185,8 +185,3 @@ map('v', '<leader>Y', function()
 		vim.notify('Failed to upload to pastebin')
 	end
 end, { desc = 'Upload selection to paste bin' })
--- map('n', '<C-c>', '"+y', { desc = 'Yank to system clipboard' })
--- map('v', '<C-c>', '"+y', { desc = 'Yank to system clipboard' })
--- map('i', '<C-v>', '<esc>"+pa', { desc = 'Paste from system clipboard' })
--- map('n', '<C-v>', '"+p', { desc = 'Paste from system clipboard' })
--- map('v', '<C-v>', '"+p', { desc = 'Paste from system clipboard' })

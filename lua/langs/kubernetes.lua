@@ -12,7 +12,7 @@ return {
 	{ 'towolf/vim-helm', event = 'VeryLazy' },
 	{
 		'someone-stole-my-name/yaml-companion.nvim',
-		lazy = false,
+		ft = 'yaml',
 		dependencies = {
 			{ 'neovim/nvim-lspconfig' },
 			{ 'nvim-lua/plenary.nvim' },
@@ -33,7 +33,7 @@ return {
 					},
 				},
 			})
-			require('telescope').load_extension('yaml_schema')
+			-- require('telescope').load_extension('yaml_schema')
 		end,
 	},
 	{

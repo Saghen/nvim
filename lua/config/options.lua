@@ -45,15 +45,6 @@ opt.list = true
 opt.listchars:append('space:⋅')
 opt.listchars:append('trail:⋅')
 opt.fillchars = {
-	-- todo: looks nice but need to be able to highlight horizontal separately
-	-- vert = '▏',
-	-- vertleft = '▏',
-	-- vertright = '▏',
-	-- verthoriz = '▏',
-	-- horiz = '🭹',
-	-- horizup = '▏',
-	-- horizdown = '▏',
-
 	fold = ' ', -- or "⸱"
 	foldopen = '',
 	foldclose = '',

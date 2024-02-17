@@ -19,7 +19,6 @@ return {
 			['<leader>dp'] = { name = '+profiling' },
 			['<leader>f'] = { name = '+file/find' },
 			['<leader>g'] = { name = '+git' },
-			['<leader>o'] = { name = '+obsidian' },
 			['<leader>q'] = { name = '+quit/session' },
 			['<leader>s'] = { name = '+search' },
 			['<leader>u'] = { name = '+ui' },

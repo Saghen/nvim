@@ -11,8 +11,6 @@ require('config.autocmds')
 require('lazy').setup({
 	spec = {
 		{ import = 'core' },
-		-- todo: better way to do this?
-		{ import = 'core.ui' },
 		{ import = 'langs' },
 		{ import = 'plugins' },
 	},
@@ -33,7 +31,7 @@ require('lazy').setup({
 				'gzip',
 				-- "matchit",
 				'matchparen',
-				-- "netrwPlugin",
+				'netrwPlugin',
 				'tarPlugin',
 				'tohtml',
 				-- 'tutor',
