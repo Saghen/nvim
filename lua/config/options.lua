@@ -45,10 +45,18 @@ opt.list = true
 opt.listchars:append('space:⋅')
 opt.listchars:append('trail:⋅')
 opt.fillchars = {
+	-- todo: looks nice but need to be able to highlight horizontal separately
+	-- vert = '▏',
+	-- vertleft = '▏',
+	-- vertright = '▏',
+	-- verthoriz = '▏',
+	-- horiz = '🭹',
+	-- horizup = '▏',
+	-- horizdown = '▏',
+
+	fold = ' ', -- or "⸱"
 	foldopen = '',
 	foldclose = '',
-	-- fold = "⸱",
-	fold = ' ',
 	foldsep = ' ',
 	diff = '╱',
 	eob = ' ',
@@ -57,19 +65,20 @@ opt.fillchars = {
 opt.mouse = 'a'
 opt.mousemoveevent = true
 
+opt.guifont = 'FiraCode Nerd Font:h10'
+
 local g = vim.g
 
 -- Support for semantic higlighting https://github.com/neovim/neovim/pull/21100
 g.lsp_semantic_enabled = 1
 
 if g.neovide then
-	opt.guifont = 'Monaspace Neon:h10'
-	opt.linespace = 4
+	opt.linespace = 5
 	g.neovide_scale_factor = 1.0
 	g.neovide_refresh_rate = 288
 	g.neovide_cursor_trail_size = 0.1
 	g.neovide_cursor_animation_length = 0.05
-	g.neovide_scroll_animation_length = 0 -- 0.1 to enable
+	g.neovide_scroll_animation_length = 0.1 -- 0.1 to enable
 	-- https://github.com/neovide/neovide/issues/1325#issuecomment-1281570219
 	g.neovide_font_hinting = 'none'
 	g.neovide_font_edging = 'subpixelantialias'

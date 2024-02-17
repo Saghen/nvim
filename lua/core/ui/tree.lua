@@ -183,6 +183,7 @@ return {
 						'package-lock.json',
 						'yarn*',
 						'pnpm-lock.yaml',
+						'biome.json',
 						'.prettierrc',
 						'.eslintrc*',
 						'.lintstagedrc*',
@@ -220,7 +221,7 @@ return {
 				group_empty_dirs = false,
 				use_libuv_file_watcher = true,
 				follow_current_file = {
-					enabled = true,
+					enabled = false,
 				},
 				components = require('core.ui.tree.filesystem'),
 				filtered_items = {
@@ -294,6 +295,7 @@ return {
 			},
 			window = {
 				width = 40,
+				auto_expand_width = false,
 				mappings = {
 					['<space>'] = 'none',
 					['<tab>'] = 'toggle_node',

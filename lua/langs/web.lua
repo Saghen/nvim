@@ -11,18 +11,34 @@ return {
 			})
 		end,
 	},
-	-- formatting
+	-- linting/formatting
 	{
-		'williamboman/mason.nvim',
-		opts = function(_, opts)
-			-- fixme: doesn't work
-			table.insert(opts.ensure_installed, 'prettierd')
-		end,
+		'neovim/nvim-lspconfig',
+		opts = {
+			servers = {
+				eslint = {},
+				biome = {},
+			},
+		},
 	},
 	{
 		'stevearc/conform.nvim',
 		opts = {
 			formatters_by_ft = {
+				-- ['javascript'] = { 'biome' },
+				-- ['javascriptreact'] = { 'biome' },
+				-- ['typescript'] = { 'biome' },
+				-- ['typescriptreact'] = { 'biome' },
+				-- ['vue'] = { 'biome' },
+				-- ['css'] = { 'biome' },
+				-- ['scss'] = { 'biome' },
+				-- ['less'] = { 'biome' },
+				-- ['html'] = { 'biome' },
+				-- ['json'] = { 'biome' },
+				-- ['jsonc'] = { 'biome' },
+				-- ['yaml'] = { 'biome' },
+				-- ['graphql'] = { 'biome' },
+				-- ['handlebars'] = { 'biome' },
 				['javascript'] = { 'prettierd' },
 				['javascriptreact'] = { 'prettierd' },
 				['typescript'] = { 'prettierd' },
@@ -58,7 +74,7 @@ return {
 		end,
 	},
 	-- performs drastically better than tsserver because we can limit the number of entries
-	-- todo: shows symbols from node_modules
+	-- todo: shows symbols from node_modules, mitigated via telescope
 	{
 		'yioneko/nvim-vtsls',
 		config = function()

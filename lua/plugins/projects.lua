@@ -66,7 +66,7 @@ return {
 				post = function()
 					vim.cmd([[Neotree show]])
 					vim.cmd([[wincmd p]])
-					vim.cmd([[AerialOpen!]])
+					-- vim.cmd([[AerialOpen!]])
 				end,
 			},
 		},

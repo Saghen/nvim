@@ -10,17 +10,6 @@ return {
 			require('telescope').load_extension('fzf')
 		end,
 	},
-	-- Offers intelligent prioritization when selecting files from your editing history.
-	-- Using an implementation of Mozilla's Frecency algorithm (used in Firefox's address bar),
-	-- files edited frecently are given higher precedence in the list index.
-	-- As the extension learns your editing habits over time, the sorting of the list is
-	-- dynamically altered to prioritize the files you're likely to need.
-	-- {
-	-- 	'nvim-telescope/telescope-frecency.nvim',
-	-- 	config = function()
-	-- 		require('telescope').load_extension('frecency')
-	-- 	end,
-	-- },
 	{
 		'nvim-telescope/telescope.nvim',
 		version = false, -- telescope did only one release, so use HEAD for now

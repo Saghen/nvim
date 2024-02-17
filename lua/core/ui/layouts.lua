@@ -58,7 +58,7 @@ return {
 				{
 					title = 'Tasks',
 					ft = 'OverseerList',
-					size = { height = 4 },
+					size = { height = 10 },
 				},
 			},
 			right = {

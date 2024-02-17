@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	'akinsho/bufferline.nvim',
 	version = '*',
 	lazy = false,

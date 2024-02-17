@@ -10,6 +10,7 @@ return {
 	{
 		'stevearc/conform.nvim',
 		opts = {
+			-- todo: switch to ruff
 			formatters_by_ft = {
 				['python'] = { 'black' },
 			},

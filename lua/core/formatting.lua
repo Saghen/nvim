@@ -14,7 +14,11 @@ return {
 		{
 			'<leader>uf',
 			function()
-				vim.g.disable_autoformat = not vim.g.disable_autoformat or true
+				if vim.g.disable_autoformat == nil then
+					vim.g.disable_autoformat = true
+				else
+					vim.g.disable_autoformat = not vim.g.disable_autoformat
+				end
 			end,
 			desc = 'Toggle format on save',
 		},

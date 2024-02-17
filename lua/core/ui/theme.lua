@@ -37,15 +37,28 @@ return {
 
 				NormalFloat = { bg = '$bg_d' },
 				PMenuSel = { bg = '$blue', fg = '$bg1' },
+				WinSeparator = { fg = '$bg2' },
 
 				RainbowOrange = { fg = '$orange' },
 				RainbowPurple = { fg = '$purple' },
 				RainbowBlue = { fg = '$blue' },
 
+				DashboardHeader = { fg = '$blue' },
+
+				EdgyNormal = { bg = '$bg_d' },
+				EdgyIcon = { bg = '$dark_bg_blue', fg = '$blue' },
+				EdgyIconActive = { bg = '$dark_bg_blue', fg = '$blue' },
+				EdgyTitle = { bg = '$dark_bg_blue', fg = '$blue' },
+				EdgyWinBar = { bg = '$dark_bg_blue' },
+
 				NeoTreeMessage = { fg = '$light_grey' },
 				NeoTreeRootName = { fg = '$light_grey' },
 				NeoTreeTabInactive = { bg = '$bg_d' },
 				NeoTreeTabActive = { bg = '$bg1' },
+				NeoTreeWinSeparator = { fg = '$bg2', bg = '$bg_d' },
+
+				AerialLine = { bg = 'bg_d', fg = '$blue' },
+				AerialWinSeparator = { fg = '$bg2', bg = '$bg_d' },
 
 				TelescopePathSeparator = { fg = '$light_grey' },
 

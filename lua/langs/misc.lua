@@ -16,7 +16,7 @@ return {
 			servers = {
 				bashls = {},
 				pyright = {},
-				eslint = {},
+				-- eslint = {},
 				clangd = {},
 			},
 		},

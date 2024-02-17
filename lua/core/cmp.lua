@@ -28,7 +28,7 @@ return {
 					end,
 				},
 				completion = {
-					completeopt = 'menu,menuone,noinsert',
+					completeopt = 'menu,menuone,preview',
 				},
 				mapping = cmp.mapping.preset.insert({
 					['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
