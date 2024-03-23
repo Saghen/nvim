@@ -1,6 +1,67 @@
 return {
+	{
+		'folke/edgy.nvim',
+		event = 'VeryLazy',
+		opts = {
+			animate = {
+				enabled = false,
+			},
+			icons = {
+				closed = '',
+				open = '',
+			},
+			wo = {
+				winbar = true,
+				-- StatusLineNC fixes the highlighting on the title when not focused
+				winhighlight = 'WinBar:EdgyWinBar,Normal:EdgyNormal,StatusLineNC:EdgyWinBar',
+			},
+			options = {
+				left = { size = 40 },
+				right = { size = 80 },
+			},
+			bottom = {
+				'Trouble',
+				{ ft = 'qf', title = 'QuickFix' },
+				{
+					ft = 'help',
+					size = { height = 20 },
+					-- only show help buffers
+					filter = function(buf)
+						return vim.bo[buf].buftype == 'help'
+					end,
+				},
+			},
+			left = {
+				{
+					ft = 'neo-tree',
+					size = { height = 0.85 },
+				},
+				{
+					title = 'Symbols',
+					ft = 'aerial',
+					size = { height = 9 },
+				},
+				{
+					title = 'Tasks',
+					ft = 'OverseerList',
+					size = { height = 10 },
+				},
+			},
+			right = {
+				{
+					ft = 'toggleterm',
+					-- exclude floating windows
+					filter = function(_, win)
+						return vim.api.nvim_win_get_config(win).relative == ''
+					end,
+				},
+			},
+		},
+	},
+
 	-- command fuzzy finder
 	{
+		enabled = false,
 		'mrjones2014/legendary.nvim',
 		-- sqlite is only needed if you want to use frecency sorting
 		dependencies = {
@@ -59,21 +120,10 @@ return {
 	{
 		'mawkler/modicator.nvim',
 		dependencies = { 'navarasu/onedark.nvim' },
-		config = function()
-			-- local c = require('onedark.colors')
-			-- local api = vim.api
-			--
-			-- api.nvim_set_hl(0, 'NormalMode', { fg = c.green })
-			-- api.nvim_set_hl(0, 'InsertMode', { fg = c.blue })
-			-- api.nvim_set_hl(0, 'VisualMode', { fg = c.purple })
-			-- api.nvim_set_hl(0, 'ReplaceMode', { fg = c.red })
-			-- api.nvim_set_hl(0, 'CommandMode', { fg = c.yellow })
-
-			require('modicator').setup({
-				highlights = {
-					defaults = { bold = true },
-				},
-			})
-		end,
+		opts = {
+			highlights = {
+				defaults = { bold = true },
+			},
+		},
 	},
 }
