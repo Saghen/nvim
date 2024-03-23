@@ -1,3 +1,10 @@
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+	pattern = { '*/templates/*.yaml', '*/templates/*.tpl', '*.gotmpl', 'helmfile*.yaml' },
+	callback = function()
+		vim.opt_local.filetype = 'helm'
+	end,
+})
+
 return {
 	-- treesitter
 	{
@@ -12,7 +19,7 @@ return {
 	{ 'towolf/vim-helm', event = 'VeryLazy' },
 	{
 		'someone-stole-my-name/yaml-companion.nvim',
-		ft = 'yaml',
+		lazy = false,
 		dependencies = {
 			{ 'neovim/nvim-lspconfig' },
 			{ 'nvim-lua/plenary.nvim' },
@@ -27,13 +34,11 @@ return {
 			require('lspconfig').helm_ls.setup({
 				settings = {
 					['helm-ls'] = {
-						yamlls = {
-							path = 'yaml-language-server',
-						},
+						yamlls = cfg.settings['yamlls'],
 					},
 				},
 			})
-			-- require('telescope').load_extension('yaml_schema')
+			require('telescope').load_extension('yaml_schema')
 		end,
 	},
 	{
