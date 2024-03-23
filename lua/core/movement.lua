@@ -12,4 +12,33 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
 	},
+	{
+		'bloznelis/before.nvim',
+		event = 'BufRead',
+		dependencies = { 'nvim-telescpoe/telescope.nvim' },
+		keys = {
+			{
+				'<leader>.',
+				function()
+					require('before').jump_to_last_edit()
+				end,
+				desc = 'Jump to previous entry in the edit history',
+			},
+			-- {
+			-- 	'<C-l>',
+			-- 	function()
+			-- 		require('before').jump_to_next_edit()
+			-- 	end,
+			-- 	desc = 'Jump to next entry in the edit history',
+			-- },
+			{
+				'<leader>fe',
+				function()
+					require('before').show_edits_in_telescope()
+				end,
+				desc = 'Edited buffers',
+			},
+		},
+		config = true,
+	},
 }
