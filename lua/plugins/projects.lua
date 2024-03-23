@@ -17,7 +17,26 @@ return {
 		branch = 'pre_release',
 		lazy = false,
 		keys = {
-			{ '<leader>fp', "<cmd>lua require('telescope').extensions.projections.projections({})<cr>", desc = 'Projects' },
+			{
+				'<leader>fp',
+				function()
+					require('telescope').extensions.projections.projections({})
+				end,
+				desc = 'Projects',
+			},
+			{
+				'<leader>fP',
+				function()
+					local extensions = require('telescope').extensions
+					local builtin = require('telescope.builtin')
+					extensions.projections.projections({
+						action = function(selected)
+							builtin.find_files({ cwd = selected.value })
+						end,
+					})
+				end,
+				desc = 'Select file from project',
+			},
 		},
 		opts = {
 			workspaces = {
