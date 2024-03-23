@@ -24,8 +24,9 @@ return {
 				'~/code/personal',
 				'~/code/neovim',
 				'~/code/liqwid',
-				'~/code/superfishial/',
-				'~/code/oz/',
+				'~/code/superfishial',
+				'~/code/oz',
+				'~/code/speechify',
 			},
 			store_hooks = {
 				pre = function()

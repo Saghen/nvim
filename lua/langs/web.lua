@@ -18,6 +18,7 @@ return {
 			servers = {
 				eslint = {},
 				biome = {},
+				svelte = {},
 			},
 		},
 	},
@@ -39,6 +40,7 @@ return {
 				['yaml'] = { 'prettierd' },
 				['graphql'] = { 'prettierd' },
 				['handlebars'] = { 'prettierd' },
+				['svelte'] = { 'prettierd' },
 			},
 		},
 	},

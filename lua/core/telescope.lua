@@ -16,12 +16,10 @@ return {
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'cljoly/telescope-repo.nvim',
-			'nvim-telescope/telescope-frecency.nvim',
 		},
 		-- todo: shortcut to repeat last telescope query
 		keys = {
-			{ '<leader><enter>', '<cmd>Telescope frecency workspace=CWD<cr>', desc = 'Find Files' },
-			-- { '<leader><enter>', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
+			{ '<leader><enter>', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
 			{ '<leader>.', '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', desc = 'Switch Buffer' },
 			{ '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
 			{ '<leader>/', '<cmd>Telescope live_grep<cr>', desc = 'Grep' },
@@ -58,10 +56,6 @@ return {
 			{ '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
 			{ '<leader>cl', '<cmd>Telescope filetypes<cr>', desc = 'Pick Language' },
 		},
-		config = function(_, opts)
-			require('telescope').setup(opts)
-			require('telescope').load_extension('frecency')
-		end,
 		opts = function()
 			local actions = require('telescope.actions')
 			return {
