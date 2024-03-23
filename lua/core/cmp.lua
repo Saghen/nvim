@@ -2,8 +2,37 @@ return {
 	-- snippets
 	{
 		'l3mon4d3/luasnip',
+		dependencies = { 'rafamadriz/friendly-snippets' },
 		version = 'v2.*',
 		build = 'make install_jsregexp', -- optional
+		keys = {
+			{
+				'<tab>',
+				function()
+					return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>'
+				end,
+				expr = true,
+				silent = true,
+				mode = 'i',
+			},
+			{
+				'<tab>',
+				function()
+					require('luasnip').jump(1)
+				end,
+				mode = 's',
+			},
+			{
+				'<s-tab>',
+				function()
+					require('luasnip').jump(-1)
+				end,
+				mode = { 'i', 's' },
+			},
+		},
+		config = function()
+			require('luasnip.loaders.from_vscode').lazy_load()
+		end,
 	},
 	-- completion
 	{
@@ -18,6 +47,7 @@ return {
 			'onsails/lspkind.nvim',
 			'nvim-tree/nvim-web-devicons',
 			'l3mon4d3/luasnip',
+			'saadparwaiz1/cmp_luasnip',
 		},
 		opts = function()
 			local cmp = require('cmp')
@@ -47,7 +77,8 @@ return {
 					['<C-Space>'] = cmp.mapping.complete(),
 				}),
 				sources = cmp.config.sources({
-					{ name = 'luasnip' },
+					{ name = 'cody' },
+					{ name = 'luasnip', option = { show_autosnippets = true } },
 					{ name = 'nvim_lsp' },
 					{ name = 'path' },
 					{ name = 'buffer' },
