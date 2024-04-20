@@ -19,8 +19,7 @@ return {
 		},
 		-- todo: shortcut to repeat last telescope query
 		keys = {
-			{ '<leader><enter>', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
-			{ '<leader>.', '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', desc = 'Switch Buffer' },
+			{ '<leader><enter>', '<cmd>Telescope find_files<cr>', desc = 'Files' },
 			{ '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
 			{ '<leader>/', '<cmd>Telescope live_grep<cr>', desc = 'Grep' },
 			{ "<leader>'", '<cmd>Telescope registers<cr>', desc = 'Registers' },
@@ -28,7 +27,7 @@ return {
 			{ '<leader><space>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
 			{ '<leader>r', '<cmd>Telescope resume<cr>', desc = 'Resume last search' },
 			-- find
-			{ '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
+			{ '<leader>fb', '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', desc = 'Buffers' },
 			{ '<leader>ff', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
 			{ '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
 			{

@@ -28,7 +28,7 @@ return {
 	},
 	keys = {
 		{ '<C-e>', '<cmd>Neotree reveal_force_cwd<cr>', desc = 'Reveal current file in tree' },
-		{ '<leader>E', '<cmd>Neotree toggle dir=.<cr>', desc = 'Toggle file tree' },
+		{ '<leader>E', '<cmd>Neotree reveal_force_cwd<cr>', desc = 'Reveal current file in tree' },
 		{
 			'<leader>e',
 			function()
@@ -187,6 +187,7 @@ return {
 						'.prettierrc',
 						'.eslintrc*',
 						'.lintstagedrc*',
+						'bun.lockb',
 					},
 				},
 				['go'] = {
@@ -195,11 +196,11 @@ return {
 				},
 				['js-extended'] = {
 					pattern = '(.+)%.js$',
-					files = { '%1.js.map', '%1.min.js', '%1.d.ts', '%1.test.js' },
+					files = { '%1.js.map', '%1.min.js', '%1.d.ts', '%1.test.js', '%1.spec.js' },
 				},
 				['ts-extended'] = {
 					pattern = '(.+)%.ts$',
-					files = { '%1.ts.map', '%1.min.ts', '%1.test.ts' },
+					files = { '%1.ts.map', '%1.min.ts', '%1.test.ts', '%1.spec.ts' },
 				},
 				['tsconfig'] = {
 					pattern = '^tsconfig%.json$',
@@ -221,7 +222,7 @@ return {
 				group_empty_dirs = false,
 				use_libuv_file_watcher = true,
 				follow_current_file = {
-					enabled = false,
+					enabled = true,
 				},
 				components = require('core.tree.filesystem'),
 				filtered_items = {

@@ -15,7 +15,7 @@ return {
 	{
 		'bloznelis/before.nvim',
 		event = 'BufRead',
-		dependencies = { 'nvim-telescpoe/telescope.nvim' },
+		dependencies = { 'nvim-telescope/telescope.nvim' },
 		keys = {
 			{
 				'<leader>.',

@@ -56,7 +56,8 @@ opt.fillchars = {
 opt.mouse = 'a'
 opt.mousemoveevent = true
 
-opt.guifont = 'FiraCode Nerd Font:h10'
+opt.guifont = 'IosevkaCustom Nerd Font Mono:h14'
+-- opt.guifont = 'Monaspace Neon:h12'
 
 local g = vim.g
 
@@ -64,13 +65,13 @@ local g = vim.g
 g.lsp_semantic_enabled = 1
 
 if g.neovide then
-	opt.linespace = 5
+	opt.linespace = 4
 	g.neovide_scale_factor = 1.0
 	g.neovide_refresh_rate = 288
 	g.neovide_cursor_trail_size = 0.1
 	g.neovide_cursor_animation_length = 0.05
-	g.neovide_scroll_animation_length = 0.1 -- 0.1 to enable
+	g.neovide_scroll_animation_length = 0.1 -- 0.1 to enable, 0 to disable
 	-- https://github.com/neovide/neovide/issues/1325#issuecomment-1281570219
-	g.neovide_font_hinting = 'none'
-	g.neovide_font_edging = 'subpixelantialias'
+	-- g.neovide_font_hinting = 'none'
+	-- g.neovide_font_edging = 'subpixelantialias'
 end

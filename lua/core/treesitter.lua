@@ -1,5 +1,5 @@
 return {
-	-- todo: rework bindings and use text objects
+	-- todo: rework bindings and use
 	{
 		'nvim-treesitter/nvim-treesitter',
 		lazy = false,
@@ -59,6 +59,11 @@ return {
 					node_decremental = 'V',
 				},
 			},
+			textobjects = {
+				move = {
+					enable = false,
+				},
+			},
 		},
 		config = function(_, opts)
 			require('nvim-treesitter.configs').setup(opts)
@@ -68,6 +73,7 @@ return {
 	-- detect language using treesitter
 	-- todo: havent used this much so far afaik
 	{
+		enabled = false,
 		'spywhere/detect-language.nvim',
 		opts = {
 			languages = {

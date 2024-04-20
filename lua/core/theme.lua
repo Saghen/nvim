@@ -36,6 +36,7 @@ return {
 			NormalFloat = { bg = '$bg_d' },
 			PMenuSel = { bg = '$blue', fg = '$bg1' },
 			WinSeparator = { fg = '$bg2' },
+			WinBar = { bg = '$bg0' },
 
 			RainbowOrange = { fg = '$orange' },
 			RainbowPurple = { fg = '$purple' },
@@ -55,7 +56,7 @@ return {
 			NeoTreeTabActive = { bg = '$bg1' },
 			NeoTreeWinSeparator = { fg = '$bg2', bg = '$bg_d' },
 
-			AerialLine = { bg = 'bg_d', fg = '$blue' },
+			AerialLine = { bg = '$bg_d', fg = '$blue' },
 			AerialWinSeparator = { fg = '$bg2', bg = '$bg_d' },
 
 			TelescopePathSeparator = { fg = '$light_grey' },
@@ -86,6 +87,8 @@ return {
 			CmpItemKindKeyword = { bg = '$grey', fg = 'white' },
 			CmpItemKindProperty = { link = 'CmpItemKindKeyword' },
 			CmpItemKindUnit = { link = 'CmpItemKindKeyword' },
+
+			TabbyCompletion = { bg = 'transparent', fg = '$grey' },
 
 			-- uncomment to use background instead of underline
 			-- IlluminatedWordText = { bg = '$bg1' },

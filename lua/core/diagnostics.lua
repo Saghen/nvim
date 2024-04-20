@@ -6,6 +6,7 @@ vim.fn.sign_define('DiagnosticSignHint', { texthl = 'DiagnosticSignHint', text =
 vim.fn.sign_define('DiagnosticSignInfo', { texthl = 'DiagnosticSignInfo', text = '' })
 
 return {
+	-- UI for viewing all diagnostics
 	{
 		'folke/trouble.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -25,6 +26,8 @@ return {
 		},
 	},
 
+	-- TODO comment highlighting
+	-- TODO: remove the lowercase keywords since it's non-standard
 	{
 		'folke/todo-comments.nvim',
 		opts = {
@@ -51,6 +54,13 @@ return {
 		},
 	},
 
+	-- Show diagnostics in the top right instead of inline
+	{
+		'dgagn/diagflow.nvim',
+		event = 'LspAttach',
+		opts = {},
+	},
+	-- OR use verbose diagnostics
 	{
 		'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
 		keys = {
@@ -59,9 +69,9 @@ return {
 				function()
 					vim.g.lsp_lines_active = not vim.g.lsp_lines_active
 					vim.diagnostic.config({
-						virtual_text = not vim.g.lsp_lines_active,
 						virtual_lines = vim.g.lsp_lines_active,
 					})
+					require('diagflow').toggle()
 				end,
 				desc = 'Toggle Verbose Diagnostics',
 			},
@@ -71,8 +81,7 @@ return {
 			vim.diagnostic.config({
 				-- disable the "E", "H" in the sign column (left of line numbers)
 				signs = false,
-				virtual_text = true,
-				virtual_lines = false,
+				virtual_lines = vim.g.lsp_lines_active,
 			})
 			-- avoid showing lsp lines on lazy.nvim popup
 			-- https://github.com/folke/lazy.nvim/issues/620

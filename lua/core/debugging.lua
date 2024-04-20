@@ -1,5 +1,6 @@
 return {
 	{
+		enabled = false,
 		'mfussenegger/nvim-dap',
 		keys = {
 			{ '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<CR>', desc = 'Toggle breakpoint' },
@@ -17,6 +18,7 @@ return {
 		end,
 	},
 	{
+		enabled = false,
 		'rcarriga/nvim-dap-ui',
 		event = 'VeryLazy',
 		dependencies = { 'mfussenegger/nvim-dap' },

@@ -37,7 +37,6 @@ return {
 	-- completion
 	{
 		'hrsh7th/nvim-cmp',
-		event = 'InsertEnter',
 		version = false,
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp',
@@ -78,8 +77,8 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = 'cody' },
-					{ name = 'luasnip', option = { show_autosnippets = true } },
 					{ name = 'nvim_lsp' },
+					{ name = 'luasnip', option = { show_autosnippets = true } },
 					{ name = 'path' },
 					{ name = 'buffer' },
 				}),
@@ -118,38 +117,7 @@ return {
 						local lspkind_opts = {
 							mode = 'symbol_text',
 							maxwidth = 50,
-							symbol_map = {
-								Text = '󰉿',
-								Method = '󰊕',
-								Function = '󰊕',
-								Constructor = '󰒓',
-
-								Field = '󰜢',
-								Variable = '󰆦',
-								Property = '󰖷',
-
-								Class = '󱡠',
-								Interface = '󱡠',
-								Struct = '󱡠',
-								Module = '󰅩',
-
-								Unit = '󰪚',
-								Value = '󰦨',
-								Enum = '󰦨',
-								EnumMember = '󰦨',
-
-								Keyword = '󰻾',
-								Constant = '󰏿',
-
-								Snippet = '󱄽',
-								Color = '󰏘',
-								File = '󰈔',
-								Reference = '󰬲',
-								Folder = '󰉋',
-								Event = '󱐋',
-								Operator = '󰪚',
-								TypeParameter = '󰬛',
-							},
+							symbol_map = require('utils.kinds'),
 						}
 						local new_entry = require('lspkind').cmp_format(lspkind_opts)(entry, vim_item)
 						local strings = vim.split(new_entry.kind, '%s', { trimempty = true })

@@ -1,4 +1,19 @@
 return {
+	-- pick venv (supports all major managers)
+	{
+		'linux-cultist/venv-selector.nvim',
+		cmd = 'VenvSelect',
+		opts = {
+			dap_enabled = false,
+			name = {
+				'venv',
+				'.venv',
+				'env',
+				'.env',
+			},
+		},
+		keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
+	},
 	-- formatting
 	{
 		'williamboman/mason.nvim',

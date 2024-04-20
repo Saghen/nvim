@@ -1,4 +1,23 @@
 return {
+	-- todo: doesnt really work
+	{
+		'LunarVim/bigfile.nvim',
+		opts = {
+			filesize = 0.1, -- size of the file in MiB, the plugin round file sizes to the closest MiB
+			pattern = { '*' }, -- autocmd pattern or function see <### Overriding the detection of big files>
+			features = { -- features to disable
+				'indent_blankline',
+				'illuminate',
+				'lsp',
+				'treesitter',
+				'syntax',
+				'matchparen',
+				'vimopts',
+				'filetype',
+			},
+		},
+	},
+
 	{
 		'Wansmer/treesj',
 		keys = {
@@ -9,6 +28,7 @@ return {
 		dependencies = { 'nvim-treesitter/nvim-treesitter' },
 		opts = { use_default_keymap = false, max_join_length = 1000 },
 	},
+
 	{
 		'numToStr/Comment.nvim',
 		version = '*',

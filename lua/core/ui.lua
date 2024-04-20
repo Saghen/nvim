@@ -1,4 +1,5 @@
 return {
+	-- partition UI elements
 	{
 		'folke/edgy.nvim',
 		event = 'VeryLazy',
@@ -56,6 +57,29 @@ return {
 					end,
 				},
 			},
+		},
+	},
+
+	-- Breadcrumbs
+	{
+		'utilyre/barbecue.nvim',
+		name = 'barbecue',
+		version = '*',
+		dependencies = {
+			'SmiteshP/nvim-navic',
+			'nvim-tree/nvim-web-devicons',
+		},
+		opts = {
+			show_modified = true,
+			symbols = {
+				separator = '',
+			},
+			kinds = require('utils.kinds'),
+			exclude_filetypes = { 'toggleterm' },
+			-- https://github.com/neovide/neovide/pull/2165
+			lead_custom_section = function()
+				return { { ' ', 'WinBar' } }
+			end,
 		},
 	},
 

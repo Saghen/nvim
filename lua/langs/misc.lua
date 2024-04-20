@@ -15,7 +15,6 @@ return {
 		opts = {
 			servers = {
 				bashls = {},
-				pyright = {},
 				clangd = {},
 			},
 		},

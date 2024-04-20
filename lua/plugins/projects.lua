@@ -46,6 +46,7 @@ return {
 				'~/code/superfishial',
 				'~/code/oz',
 				'~/code/speechify',
+				'~/code/made-by-others/',
 			},
 			store_hooks = {
 				pre = function()
@@ -113,6 +114,11 @@ return {
 			vim.api.nvim_create_user_command('ProjectLoad', function(opts)
 				switcher.switch(opts.args)
 			end, { nargs = 1 })
+
+			-- Open project menu on startup
+			-- vim.defer_fn(function()
+			-- 	require('telescope').extensions.projections.projections({})
+			-- end, 0)
 		end,
 	},
 }
