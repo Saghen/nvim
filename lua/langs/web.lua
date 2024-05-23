@@ -19,6 +19,9 @@ return {
 				eslint = {},
 				biome = {},
 				svelte = {},
+				-- fixme: had to include them here to make it work ???
+				purescriptls = {},
+				hls = {},
 			},
 		},
 	},
@@ -63,13 +66,6 @@ return {
 		end,
 	},
 
-	{
-		'williamboman/mason.nvim',
-		opts = function(_, opts)
-			-- fixme: doesn't work
-			table.insert(opts.ensure_installed, 'vtsls')
-		end,
-	},
 	-- performs drastically better than tsserver because we can limit the number of entries
 	-- todo: shows symbols from node_modules, mitigated via telescope
 	{
@@ -96,8 +92,8 @@ return {
 				vtsls = {
 					experimental = {
 						completion = {
-							enableServerSideFuzzyMatch = true,
-							entriesLimit = 75,
+							-- enableServerSideFuzzyMatch = true,
+							-- entriesLimit = 75,
 						},
 					},
 				},
@@ -105,6 +101,8 @@ return {
 			require('lspconfig').vtsls.setup(opts)
 		end,
 	},
+	-- TODO: install with nix
+	{ 'williamboman/mason.nvim', opts = { ensure_installed = { vtsls = {} } } },
 	-- provides TSC command and diagnostics in editor
 	{ 'dmmulroy/tsc.nvim', config = true },
 }

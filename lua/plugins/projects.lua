@@ -1,4 +1,5 @@
 return {
+	-- fuzzy search over all repos on the system
 	{
 		'cljoly/telescope-repo.nvim',
 		dependencies = {
@@ -12,113 +13,44 @@ return {
 			require('telescope').load_extension('repo')
 		end,
 	},
+
+	-- project and session management
 	{
-		'gnikdroy/projections.nvim',
-		branch = 'pre_release',
+		'coffebar/neovim-project',
 		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'Shatur/neovim-session-manager',
+			'nvim-telescope/telescope.nvim',
+		},
 		keys = {
-			{
-				'<leader>fp',
-				function()
-					require('telescope').extensions.projections.projections({})
-				end,
-				desc = 'Projects',
-			},
-			{
-				'<leader>fP',
-				function()
-					local extensions = require('telescope').extensions
-					local builtin = require('telescope.builtin')
-					extensions.projections.projections({
-						action = function(selected)
-							builtin.find_files({ cwd = selected.value })
-						end,
-					})
-				end,
-				desc = 'Select file from project',
-			},
+			{ '<leader>fp', '<cmd>Telescope neovim-project discover<cr>', desc = 'Projects' },
 		},
-		opts = {
-			workspaces = {
-				'~/code/personal',
-				'~/code/neovim',
-				'~/code/liqwid',
-				'~/code/superfishial',
-				'~/code/oz',
-				'~/code/speechify',
-				'~/code/made-by-others/',
-			},
-			store_hooks = {
-				pre = function()
-					-- close neo-tree
-					if pcall(require, 'neo-tree') then
-						vim.cmd([[Neotree action=close]])
-					end
-
-					-- close all terminals
-					for _, winid in ipairs(vim.api.nvim_list_wins()) do
-						local bufnr = vim.api.nvim_win_get_buf(winid)
-						if vim.fn.getbufvar(bufnr, '&buftype') == 'terminal' then
-							vim.api.nvim_win_close(winid, true)
-						end
-					end
-
-					-- close assorted buffers
-					local buffer_filetypes = {
-						'qf',
-						'help',
-						'spectre_panel',
-						'toggleterm',
-						'OverseerList',
-						'NeogitStatus',
-						'NeogitCommitMessage',
-						'Trouble',
-						'aerial',
-					}
-					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-						local filetype = vim.fn.getbufvar(bufnr, '&filetype')
-						if vim.tbl_contains(buffer_filetypes, filetype) then
-							vim.api.nvim_buf_delete(bufnr, { force = true })
-						end
-					end
-				end,
-			},
-			restore_hooks = {
-				post = function()
-					vim.cmd([[Neotree show]])
-					vim.cmd([[wincmd p]])
-				end,
-			},
-		},
-		config = function(_, opts)
-			require('projections').setup(opts)
-
-			-- Autostore session on VimExit
-			local Session = require('projections.session')
-			vim.api.nvim_create_autocmd({ 'VimLeavePre' }, {
-				callback = function()
-					Session.store(vim.loop.cwd())
-				end,
-			})
-
-			-- Switch to project if vim was started in a project dir or if the dir is changed
-			local switcher = require('projections.switcher')
-			vim.api.nvim_create_autocmd({ 'VimEnter' }, {
-				callback = function()
-					if vim.fn.argc() == 0 then
-						switcher.switch(vim.loop.cwd())
-					end
-				end,
-			})
-			-- Command for loading, used by dashboard
-			vim.api.nvim_create_user_command('ProjectLoad', function(opts)
-				switcher.switch(opts.args)
-			end, { nargs = 1 })
-
-			-- Open project menu on startup
-			-- vim.defer_fn(function()
-			-- 	require('telescope').extensions.projections.projections({})
-			-- end, 0)
+		init = function()
+			-- enable saving the state of plugins in the session
+			vim.opt.sessionoptions:append('globals') -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
 		end,
+		opts = {
+			dashboard_mode = true, -- prevent session autoload
+			projects = {
+				-- projects
+				'~/code/huggingface/*',
+				'~/code/huggingface/tokenizers/*',
+				'~/code/huggingface/spaces/*',
+				'~/code/liqwid/*',
+				'~/code/nvim/*',
+				'~/code/oz/*',
+				'~/code/personal/*',
+				'~/code/superfishial/*',
+
+				-- dotfiles
+				'/etc/nixos',
+				'~/.config/*',
+			},
+
+			session_manager_opts = {
+				autosave_ignore_buftypes = { 'nowrite' },
+			},
+		},
 	},
 }

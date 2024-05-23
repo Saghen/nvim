@@ -3,9 +3,11 @@
 -- Add any additional options here
 
 local opt = vim.opt
+local api = vim.api
+local g = vim.g
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+g.mapleader = ' '
+g.maplocalleader = '\\'
 
 opt.completeopt = 'menu,menuone,preview'
 opt.clipboard = 'unnamed'
@@ -34,9 +36,13 @@ opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 opt.wrap = true -- Line wrapping
 
--- required for edgy.nvim
--- views can only be fully collapsed with the global statusline
-opt.laststatus = 3
+-- disable statusline, otherwise set to 3 for compat with edgy.nvim
+opt.laststatus = 0
+api.nvim_set_hl(0, 'Statusline', { link = 'Normal' })
+api.nvim_set_hl(0, 'StatuslineNC', { link = 'Normal' })
+local str = string.rep('-', api.nvim_win_get_width(0))
+opt.statusline = str
+
 -- Default splitting will cause your main splits to jump when opening an edgebar.
 -- To prevent this, set `splitkeep` to either `screen` or `topline`.
 opt.splitkeep = 'screen'
@@ -51,13 +57,14 @@ opt.fillchars = {
 	foldsep = ' ',
 	diff = '╱',
 	eob = ' ',
+
+	vert = ' ',
 }
 
 opt.mouse = 'a'
 opt.mousemoveevent = true
 
-opt.guifont = 'IosevkaCustom Nerd Font Mono:h14'
--- opt.guifont = 'Monaspace Neon:h12'
+opt.guifont = 'IosevkaCustom Nerd Font:h12'
 
 local g = vim.g
 

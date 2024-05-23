@@ -62,7 +62,7 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 -- lazy
-map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+map('n', '<leader>ul', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
 -- ui
 map('n', '<leader>uw', '<cmd>set wrap!<cr>', { desc = 'Toggle line wrapping' })
@@ -98,11 +98,11 @@ map('n', '<leader>dpS', function()
 end, { desc = 'Stop Lua profiling' })
 
 -- clipboard
-map('v', '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
-map('n', '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
-map('v', '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
-map('n', '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
-map('v', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+map('v', '<leader>p', '"+p', { desc = 'Paste from clipboard' })
+map('n', '<leader>p', '"+p', { desc = 'Paste from clipboard' })
+map('v', '<leader>P', '"+P', { desc = 'Paste from clipboard' })
+map('n', '<leader>P', '"+P', { desc = 'Paste from clipboard' })
+map('v', '<leader>y', '"+y', { desc = 'Yank to clipboard' })
 map('v', '<leader>Y', function()
 	local curl = require('plenary.curl')
 	local strings = require('plenary.strings')
@@ -162,26 +162,17 @@ map('v', '<leader>Y', function()
 		nix = 'nix',
 	}
 
-	vim.cmd('noau normal! "vy"')
-	local selected_text = strings.dedent(vim.fn.getreg('v'))
+	vim.cmd.normal({ '"zy', bang = true })
+	local selected_text = strings.dedent(vim.fn.getreg('z'))
 
-	local response = curl.post('https://paste.super.fish/submit', {
-		form = {
-			-- current selection
-			content = selected_text,
-			-- extension like txt, lua, ts, etc by getting the extension of the buffer filename
-			ext = filetype_to_extensions[vim.bo.filetype] or 'txt',
-		},
+	local response = curl.post('https://paste.super.fish/', {
+		method = 'POST',
+		body = selected_text,
 	})
 
-	local redirect_url = nil
-	for _, v in ipairs(response.headers) do
-		if v:match('location: (.*)') then
-			redirect_url = v:match('location: (.*)')
-		end
-	end
+	local redirect_url = response.body
 	if redirect_url then
-		vim.fn.setreg('+', 'https://paste.super.fish' .. redirect_url)
+		vim.fn.setreg('+', 'https://paste.super.fish' .. redirect_url .. '.' .. filetype_to_extensions[vim.bo.filetype])
 		vim.notify('Copied to clipboard and system clipboard')
 	else
 		vim.notify('Failed to upload to pastebin')

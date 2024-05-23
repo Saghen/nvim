@@ -41,11 +41,4 @@ return {
 			require('telescope').load_extension('yaml_schema')
 		end,
 	},
-	{
-		'williamboman/mason.nvim',
-		opts = function(_, opts)
-			table.insert(opts.ensure_installed, 'yaml-language-server')
-			table.insert(opts.ensure_installed, 'helm-ls')
-		end,
-	},
 }

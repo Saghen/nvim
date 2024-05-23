@@ -16,13 +16,6 @@ return {
 	},
 	-- formatting
 	{
-		'williamboman/mason.nvim',
-		opts = function(_, opts)
-			-- fixme: doesn't work
-			table.insert(opts.ensure_installed, 'black')
-		end,
-	},
-	{
 		'stevearc/conform.nvim',
 		opts = {
 			-- todo: switch to ruff
@@ -39,13 +32,6 @@ return {
 		end,
 	},
 	-- LSP
-	{
-		'williamboman/mason.nvim',
-		opts = function(_, opts)
-			-- fixme: doesn't work
-			table.insert(opts.ensure_installed, 'python-lsp-server')
-		end,
-	},
 	{
 		'neovim/nvim-lspconfig',
 		opts = {

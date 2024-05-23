@@ -8,6 +8,7 @@ vim.fn.sign_define('DiagnosticSignInfo', { texthl = 'DiagnosticSignInfo', text =
 return {
 	-- UI for viewing all diagnostics
 	{
+		enabled = false,
 		'folke/trouble.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		keys = {
@@ -28,7 +29,9 @@ return {
 
 	-- TODO comment highlighting
 	-- TODO: remove the lowercase keywords since it's non-standard
+	-- TODO: rewrite this myself
 	{
+		enabled = false,
 		'folke/todo-comments.nvim',
 		opts = {
 			keywords = {
@@ -56,12 +59,14 @@ return {
 
 	-- Show diagnostics in the top right instead of inline
 	{
+		enabled = false,
 		'dgagn/diagflow.nvim',
 		event = 'LspAttach',
 		opts = {},
 	},
 	-- OR use verbose diagnostics
 	{
+		enabled = false,
 		'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
 		keys = {
 			{

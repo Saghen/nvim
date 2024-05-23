@@ -1,20 +1,30 @@
 vim.cmd([[autocmd BufRead,BufNewFile ~/.config/waybar/config set syntax=jsonc]])
 vim.cmd([[autocmd BufRead,BufNewFile *.rasi set syntax=css]])
 
+local autocmd = vim.api.nvim_create_autocmd
+
+-- hide kitty padding when entering and restore on exit
+autocmd('VimEnter', {
+	command = ':silent !kitty @ --to=$KITTY_LISTEN_ON set-spacing padding=0',
+})
+autocmd('VimLeavePre', {
+	command = ':silent !kitty @ --to=$KITTY_LISTEN_ON set-spacing padding=8',
+})
+
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 	command = 'checktime',
 })
 
 -- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
+autocmd('TextYankPost', {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
 })
 
 -- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd('BufReadPost', {
+autocmd('BufReadPost', {
 	callback = function(event)
 		local exclude = { 'gitcommit' }
 		local buf = event.buf
@@ -31,7 +41,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
 	pattern = {
 		'PlenaryTestPopup',
 		'help',
@@ -53,5 +63,34 @@ vim.api.nvim_create_autocmd('FileType', {
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+	end,
+})
+
+-- Sets the current line's color based on the current mode
+-- Equivalent to modicator but fast
+local mode_hl_groups = {
+	[''] = 'ModeVisual',
+	v = 'ModeVisual',
+	V = 'ModeVisual',
+	n = 'ModeNormal',
+	no = 'ModeNormal',
+	i = 'ModeInsert',
+	c = 'ModeCommand',
+	s = 'ModeSelect',
+	S = 'ModeSelect',
+	R = 'ModeReplace',
+	t = 'ModeTerminal',
+	nt = 'ModeTerminal',
+}
+autocmd({ 'BufEnter', 'ModeChanged' }, {
+	callback = function()
+		local mode = vim.api.nvim_get_mode().mode
+		local mode_hl_group = mode_hl_groups[mode]
+		if mode_hl_group == nil then
+			mode_hl_group = mode_hl_groups['n']
+		end
+		local hl = vim.api.nvim_get_hl(0, { name = mode_hl_groups[mode], link = false })
+		hl = vim.tbl_extend('force', { bold = true }, hl)
+		vim.api.nvim_set_hl(0, 'CursorLineNr', hl)
 	end,
 })

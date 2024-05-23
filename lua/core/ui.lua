@@ -1,21 +1,26 @@
 return {
+	-- top bar
+	{
+		'ramilito/winbar.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		opts = {
+			icons = true,
+			diagnostics = true,
+			buf_modified = true,
+		},
+	},
+
 	-- partition UI elements
 	{
 		'folke/edgy.nvim',
 		event = 'VeryLazy',
 		opts = {
-			animate = {
-				enabled = false,
-			},
+			animate = { enabled = false },
 			icons = {
 				closed = '',
 				open = '',
 			},
-			wo = {
-				winbar = true,
-				-- StatusLineNC fixes the highlighting on the title when not focused
-				winhighlight = 'WinBar:EdgyWinBar,Normal:EdgyNormal,StatusLineNC:EdgyWinBar',
-			},
+			wo = { winbar = false },
 			options = {
 				left = { size = 40 },
 				right = { size = 80 },
@@ -38,11 +43,6 @@ return {
 					size = { height = 0.85 },
 				},
 				{
-					title = 'Symbols',
-					ft = 'aerial',
-					size = { height = 9 },
-				},
-				{
 					title = 'Tasks',
 					ft = 'OverseerList',
 					size = { height = 10 },
@@ -60,47 +60,6 @@ return {
 		},
 	},
 
-	-- Breadcrumbs
-	{
-		'utilyre/barbecue.nvim',
-		name = 'barbecue',
-		version = '*',
-		dependencies = {
-			'SmiteshP/nvim-navic',
-			'nvim-tree/nvim-web-devicons',
-		},
-		opts = {
-			show_modified = true,
-			symbols = {
-				separator = '',
-			},
-			kinds = require('utils.kinds'),
-			exclude_filetypes = { 'toggleterm' },
-			-- https://github.com/neovide/neovide/pull/2165
-			lead_custom_section = function()
-				return { { ' ', 'WinBar' } }
-			end,
-		},
-	},
-
-	-- command fuzzy finder
-	{
-		enabled = false,
-		'mrjones2014/legendary.nvim',
-		-- sqlite is only needed if you want to use frecency sorting
-		dependencies = {
-			'kkharji/sqlite.lua',
-			'nvim-telescope/telescope.nvim',
-			'stevearc/dressing.nvim',
-		},
-		-- since legendary.nvim handles all your keymaps/commands,
-		-- its recommended to load legendary.nvim before other plugins
-		priority = 10000,
-		lazy = false,
-		keys = { { '<leader>P', '<cmd>Legendary<cr>', desc = 'Command Palette' } },
-		opts = { extensions = { lazy_nvim = true } },
-	},
-
 	-- experimental UI
 	{
 		'folke/noice.nvim',
@@ -109,19 +68,76 @@ return {
 			presets = {
 				inc_rename = true, -- enables an input dialog for inc-rename.nvim
 			},
+			messages = { enabled = false },
 			notify = { enabled = false },
-			popupmenu = { backend = 'cmp' },
+			popupmenu = { enabled = false },
 			lsp = {
 				progress = { enabled = false },
-				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-				override = {
-					['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-					['vim.lsp.util.stylize_markdown'] = true,
-					['cmp.entry.get_documentation'] = true,
-				},
+				-- provides signature help while typing
+				signature = { enabled = true },
 			},
 		},
 	},
+
+	-- helix-like which key
+	{
+		enabled = false,
+		'echasnovski/mini.clue',
+		version = false,
+		config = function()
+			local clue = require('mini.clue')
+			clue.setup({
+				triggers = {
+					-- Leader triggers
+					{ mode = 'n', keys = '<Leader>' },
+					{ mode = 'x', keys = '<Leader>' },
+
+					-- Built-in completion
+					{ mode = 'i', keys = '<C-x>' },
+
+					-- `g` key
+					{ mode = 'n', keys = 'g' },
+					{ mode = 'x', keys = 'g' },
+
+					-- Marks
+					{ mode = 'n', keys = "'" },
+					{ mode = 'n', keys = '`' },
+					{ mode = 'x', keys = "'" },
+					{ mode = 'x', keys = '`' },
+
+					-- Registers
+					{ mode = 'n', keys = '"' },
+					{ mode = 'x', keys = '"' },
+					{ mode = 'i', keys = '<C-r>' },
+					{ mode = 'c', keys = '<C-r>' },
+
+					-- Window commands
+					{ mode = 'n', keys = '<C-w>' },
+
+					-- `z` key
+					{ mode = 'n', keys = 'z' },
+					{ mode = 'x', keys = 'z' },
+				},
+
+				clues = {
+					-- Enhance this by adding descriptions for <Leader> mapping groups
+					clue.gen_clues.builtin_completion(),
+					clue.gen_clues.g(),
+					clue.gen_clues.marks(),
+					clue.gen_clues.registers(),
+					clue.gen_clues.windows(),
+					clue.gen_clues.z(),
+				},
+
+				window = {
+					delay = 200,
+					config = { border = 'single', width = 40 },
+				},
+			})
+		end,
+	},
+
+	-- live feedback for rename
 	{
 		'smjonas/inc-rename.nvim',
 		keys = {
@@ -140,14 +156,12 @@ return {
 	-- notifications
 	{ 'j-hui/fidget.nvim', opts = {} },
 
-	-- show mode color in line numbers
+	-- colors
 	{
-		'mawkler/modicator.nvim',
-		dependencies = { 'navarasu/onedark.nvim' },
-		opts = {
-			highlights = {
-				defaults = { bold = true },
-			},
-		},
+		'brenoprata10/nvim-highlight-colors',
+		opts = { render = 'virtual', enable_tailwind = true, enable_named_colors = false },
 	},
+
+	-- render images
+	{ '3rd/image.nvim', opts = {} },
 }

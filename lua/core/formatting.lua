@@ -1,7 +1,6 @@
 return {
 	'stevearc/conform.nvim',
 	lazy = false,
-	dependencies = { 'mason.nvim' },
 	keys = {
 		{
 			'<leader>cf',
@@ -27,6 +26,7 @@ return {
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end,
 	opts = {
+		async = true,
 		format_after_save = function(bufnr)
 			-- Disable with a global or buffer-local variable
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

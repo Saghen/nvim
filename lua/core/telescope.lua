@@ -12,34 +12,32 @@ return {
 	},
 	{
 		'nvim-telescope/telescope.nvim',
-		version = false, -- telescope did only one release, so use HEAD for now
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'cljoly/telescope-repo.nvim',
-		},
-		-- todo: shortcut to repeat last telescope query
+		dependencies = { 'nvim-lua/plenary.nvim' },
 		keys = {
 			{ '<leader><enter>', '<cmd>Telescope find_files<cr>', desc = 'Files' },
+			{ '<leader>.', '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', desc = 'Buffers' },
 			{ '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
 			{ '<leader>/', '<cmd>Telescope live_grep<cr>', desc = 'Grep' },
 			{ "<leader>'", '<cmd>Telescope registers<cr>', desc = 'Registers' },
 			{ '<leader>y', '<cmd>Telescope lsp_document_symbols<cr>', desc = 'Goto Symbol' },
-			{ '<leader><space>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
 			{ '<leader>r', '<cmd>Telescope resume<cr>', desc = 'Resume last search' },
+			{ '<leader><space>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
+
 			-- find
-			{ '<leader>fb', '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', desc = 'Buffers' },
 			{ '<leader>ff', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
 			{ '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
 			{
 				'<leader>fc',
 				'<cmd>lua require("telescope.builtin").find_files({ cwd = "~/.config" })<cr>',
-				desc = 'Find .config folder',
+				desc = 'Find .config file',
 			},
 			{ '<leader>fg', "<cmd>lua require'telescope'.extensions.repo.list{}<cr>", desc = 'Git Repositories' },
 			-- { '<leader>fR', Util.telescope('oldfiles', { cwd = vim.loop.cwd() }), desc = 'Recent (cwd)' },
+
 			-- git
 			{ '<leader>gc', '<cmd>Telescope git_commits<cr>', desc = 'commits' },
 			{ '<leader>gs', '<cmd>Telescope git_status<cr>', desc = 'status' },
+
 			-- search
 			{ '<leader>sa', '<cmd>Telescope autocommands<cr>', desc = 'Auto Commands' },
 			{ '<leader>sb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'Buffer' },

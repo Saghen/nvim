@@ -1,17 +1,10 @@
 return {
 	-- autocompletion for neovim configuration
-	{
-		'folke/neodev.nvim',
-		opts = { lspconfig = false },
-	},
+	-- {
+	-- 	'folke/neodev.nvim',
+	-- 	opts = { lspconfig = false },
+	-- },
 	-- formatting
-	{
-		'williamboman/mason.nvim',
-		opts = function(_, opts)
-			-- fixme: doesn't work
-			table.insert(opts.ensure_installed, 'stylua')
-		end,
-	},
 	{
 		'stevearc/conform.nvim',
 		opts = {
@@ -39,7 +32,8 @@ return {
 		opts = function()
 			return {
 				servers = {
-					lua_ls = { before_init = require('neodev.lsp').before_init },
+					-- lua_ls = { before_init = require('neodev.lsp').before_init },
+					lua_ls = {},
 				},
 			}
 		end,

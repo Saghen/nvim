@@ -19,7 +19,6 @@ return {
 	-- 	end,
 	-- },
 	{
-		enabled = false,
 		'nvimdev/dashboard-nvim',
 		dependencies = { 'navarasu/onedark.nvim', 'nvim-tree/nvim-web-devicons' },
 		opts = {

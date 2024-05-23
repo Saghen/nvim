@@ -1,23 +1,4 @@
 return {
-	-- todo: doesnt really work
-	{
-		'LunarVim/bigfile.nvim',
-		opts = {
-			filesize = 0.1, -- size of the file in MiB, the plugin round file sizes to the closest MiB
-			pattern = { '*' }, -- autocmd pattern or function see <### Overriding the detection of big files>
-			features = { -- features to disable
-				'indent_blankline',
-				'illuminate',
-				'lsp',
-				'treesitter',
-				'syntax',
-				'matchparen',
-				'vimopts',
-				'filetype',
-			},
-		},
-	},
-
 	{
 		'Wansmer/treesj',
 		keys = {
@@ -29,70 +10,39 @@ return {
 		opts = { use_default_keymap = false, max_join_length = 1000 },
 	},
 
-	{
-		'numToStr/Comment.nvim',
-		version = '*',
-		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-		opts = function()
-			return {
-				-- Adds suppors for TSX
-				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-				-- LHS of toggle mappings in NORMAL mode
-				toggler = {
-					-- Line-comment toggle keymap
-					line = 'gcc',
-					-- Block-comment toggle keymap
-					block = 'gbc',
-				},
-				-- LHS of operator-pending mappings in NORMAL and VISUAL mode
-				opleader = {
-					-- Line-comment keymap
-					line = 'gc',
-					-- Block-comment keymap
-					block = 'gb',
-				},
-				-- LHS of extra mappings
-				extra = {
-					-- Add comment on the line above
-					above = 'gcO',
-					-- Add comment on the line below
-					below = 'gco',
-					-- Add comment at the end of line
-					eol = 'gcA',
-				},
-				-- Enable keybindings
-				-- NOTE: If given `false` then the plugin won't create any mappings
-				mappings = {
-					-- Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-					basic = true,
-					-- Extra mapping; `gco`, `gcO`, `gcA`
-					extra = true,
-				},
-			}
-		end,
-	},
+	-- support comment strings for different treesitter node types (i.e. JSX)
+	-- todo: too slow because uses treesitter
+	-- { 'folke/ts-comments.nvim', opts = {} },
 
+	-- find and replace across workspace
 	{
-		'RRethy/vim-illuminate',
-		version = '*',
+		'nvim-pack/nvim-spectre',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		keys = {
+			{ '<leader>H', '<cmd>lua require("spectre").toggle()<cr>', desc = 'Find and Weplace (Workspace)' },
+		},
 		opts = {
-			filetypes_denylist = {
-				'dirbuf',
-				'dirvish',
-				'fugitive',
-				'neo-tree',
+			is_insert_mode = true, -- open in insert mode
+			live_update = true, -- execute search query immediately
+			lnum_for_results = false, -- show line number for search/replace results
+			-- disable borders
+			line_sep_start = '',
+			result_padding = '',
+			line_sep = '',
+			-- invert colors
+			highlight = {
+				ui = 'Primary',
+				filename = 'Primary',
+				-- todo: change these in theme?
+				search = 'DiffDelete',
+				replace = 'DiffAdd',
 			},
 		},
-		config = function(_, opts)
-			require('illuminate').configure(opts)
-		end,
 	},
-	{
-		'altermo/ultimate-autopair.nvim',
-		event = { 'InsertEnter', 'CmdlineEnter' },
-		branch = 'v0.6',
-		opts = {},
-	},
+
+	-- todo: fork to support limitting filetypes via lua or contribute
+	{ 'echasnovski/mini.cursorword', version = false, opts = {} },
+	{ 'echasnovski/mini.pairs', version = false, opts = {} },
 	{
 		'echasnovski/mini.surround',
 		version = '*',

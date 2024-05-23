@@ -1,17 +1,4 @@
 return {
-	-- blame
-	{
-		'f-person/git-blame.nvim',
-		init = function()
-			vim.g.gitblame_delay = 1000
-			vim.g.gitblame_set_extmark_options = {
-				hl_mode = 'combine',
-			}
-			vim.g.gitblame_date_format = '%r'
-			vim.g.gitblame_highlight_group = 'GitBlameVirtText'
-		end,
-	},
-
 	-- client
 	{
 		'NeogitOrg/neogit',
@@ -28,6 +15,18 @@ return {
 			use_per_project_settings = false,
 			-- the time after which an output console is shown for slow running commands
 			console_timeout = 4000,
+		},
+	},
+
+	-- github integration
+	{
+		'pwntester/octo.nvim',
+		keys = {
+			{ '<leader>ghi', '<cmd>Octo issue list<cr>', desc = 'GH Issues' },
+			{ '<leader>ghp', '<cmd>Octo pr list<cr>', desc = 'GH PRs' },
+		},
+		opts = {
+			default_to_projects_v2 = true,
 		},
 	},
 

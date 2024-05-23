@@ -104,6 +104,7 @@ return {
 
 		require('neo-tree').setup({
 			async_directory_scan = 'always',
+			enable_diagnostics = false, -- todo: nukes perf
 			sources = {
 				'filesystem',
 				'buffers',
@@ -115,18 +116,7 @@ return {
 			sort_case_insensitive = true,
 
 			source_selector = {
-				winbar = true, -- toggle to show selector on winbar
-				content_layout = 'center',
-				tabs_layout = 'equal',
-				separator = '',
-				show_separator_on_edge = false,
-				sources = {
-					{ source = 'filesystem', display_name = '󰲂 Files' },
-					{ source = 'buffers', display_name = '󰦨 Bufs' },
-					{ source = 'git_status', display_name = ' Git' },
-					-- { source = "document_symbols", display_name = "o" },
-					{ source = 'diagnostics', display_name = '󰒡' },
-				},
+				winbar = false,
 			},
 			default_component_configs = {
 				indent = {
@@ -222,7 +212,7 @@ return {
 				group_empty_dirs = false,
 				use_libuv_file_watcher = true,
 				follow_current_file = {
-					enabled = true,
+					enabled = false, -- todo: nukes perf
 				},
 				components = require('core.tree.filesystem'),
 				filtered_items = {

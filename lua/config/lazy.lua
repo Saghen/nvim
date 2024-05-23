@@ -12,12 +12,12 @@ require('lazy').setup({
 	spec = {
 		{ import = 'core' },
 		{ import = 'langs' },
-		{ import = 'plugins' },
+		-- { import = 'plugins' },
+		-- { import = 'profile' },
 	},
 	defaults = {
 		lazy = false, -- whether to lazy load all plugins by default
 		version = false, -- always use the latest git commit
-		-- version = "*", -- try installing the latest stable version for plugins that support semver
 	},
 	checker = { enabled = true, frequency = 60 * 60 * 24 * 7 }, -- automatically check for plugin updates every week
 	performance = {
@@ -41,3 +41,4 @@ require('lazy').setup({
 	},
 })
 require('config.keymaps')
+-- require('custom.hitch-detector.init')

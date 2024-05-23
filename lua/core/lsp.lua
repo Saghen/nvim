@@ -40,25 +40,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 return {
-	{ 'williamboman/mason.nvim', opts = { ensure_installed = {} } },
-	{
-		'williamboman/mason-lspconfig.nvim',
-		dependencies = 'williamboman/mason.nvim',
-		opts = {
-			automatic_installation = true,
-		},
-	},
 	{
 		'neovim/nvim-lspconfig',
-		dependencies = {
-			'williamboman/mason.nvim',
-			'williamboman/mason-lspconfig.nvim',
-		},
 		opts = {
 			servers = {
 				dockerls = {},
-				lua_ls = {},
-				rust_analyzer = {},
 			},
 		},
 		config = function(_, opts)
@@ -69,4 +55,16 @@ return {
 		end,
 	},
 	{ 'nvimtools/none-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
+
+	-- emulates the LSP definition and references when unsupported
+	{
+		'pechorin/any-jump.vim',
+		keys = {
+			{ '<leader>j', '<cmd>AnyJump<cr>', desc = 'Grep References' },
+		},
+		init = function()
+			vim.g.any_jump_disable_default_keybindings = 1
+		end,
+		-- config = function() end,
+	},
 }

@@ -8,6 +8,7 @@ return {
 		priority = 1001,
 		opts = { window = { open = 'smart' } },
 	},
+
 	-- terminal
 	{
 		'akinsho/nvim-toggleterm.lua',
@@ -25,7 +26,7 @@ return {
 						vim.cmd('wincmd p')
 					end
 				end,
-				desc = 'Focus vertical terminal',
+				desc = 'Focus terminal',
 			},
 			{
 				'<leader>T',
@@ -36,7 +37,7 @@ return {
 						MainTerminal:open(100, 'vertical')
 					end
 				end,
-				desc = 'Toggle vertical terminal',
+				desc = 'Toggle terminal',
 			},
 		},
 		config = function()
