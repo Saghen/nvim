@@ -12,8 +12,8 @@ require('lazy').setup({
 	spec = {
 		{ import = 'core' },
 		{ import = 'langs' },
-		-- { import = 'plugins' },
-		-- { import = 'profile' },
+		{ import = 'plugins' },
+		{ import = 'profile' },
 	},
 	defaults = {
 		lazy = false, -- whether to lazy load all plugins by default

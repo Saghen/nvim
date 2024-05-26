@@ -1,3 +1,10 @@
+-- uses biome when available, fallback to prettierd
+local choose_formatter = function()
+	local cwd = vim.fn.getcwd()
+	local has_biome = vim.fn.filereadable(cwd .. '/biome.json')
+	return has_biome and { 'biome' } or { 'prettierd' }
+end
+
 return {
 	-- auto pairs for JSX
 	{
@@ -11,6 +18,7 @@ return {
 			})
 		end,
 	},
+
 	-- linting/formatting
 	{
 		'neovim/nvim-lspconfig',
@@ -20,6 +28,7 @@ return {
 				biome = {},
 				svelte = {},
 				-- fixme: had to include them here to make it work ???
+				-- didn't work when putting in fp.lua
 				purescriptls = {},
 				hls = {},
 			},
@@ -29,24 +38,25 @@ return {
 		'stevearc/conform.nvim',
 		opts = {
 			formatters_by_ft = {
-				['javascript'] = { 'prettierd' },
-				['javascriptreact'] = { 'prettierd' },
-				['typescript'] = { 'prettierd' },
-				['typescriptreact'] = { 'prettierd' },
-				['vue'] = { 'prettierd' },
-				['css'] = { 'prettierd' },
-				['scss'] = { 'prettierd' },
-				['less'] = { 'prettierd' },
-				['html'] = { 'prettierd' },
-				['json'] = { 'prettierd' },
-				['jsonc'] = { 'prettierd' },
-				['yaml'] = { 'prettierd' },
-				['graphql'] = { 'prettierd' },
-				['handlebars'] = { 'prettierd' },
-				['svelte'] = { 'prettierd' },
+				javascript = choose_formatter,
+				javascriptreact = choose_formatter,
+				typescript = choose_formatter,
+				typescriptreact = choose_formatter,
+				vue = choose_formatter,
+				css = choose_formatter,
+				scss = choose_formatter,
+				less = choose_formatter,
+				html = choose_formatter,
+				json = choose_formatter,
+				jsonc = choose_formatter,
+				yaml = choose_formatter,
+				graphql = { 'prettierd' },
+				handlebars = { 'prettierd' },
+				svelte = { 'prettierd' },
 			},
 		},
 	},
+
 	-- LSP
 	{
 		'nvim-treesitter/nvim-treesitter',
@@ -90,6 +100,7 @@ return {
 					},
 				},
 				vtsls = {
+					autoUseWorkspaceTsdk = true,
 					experimental = {
 						completion = {
 							-- enableServerSideFuzzyMatch = true,
