@@ -1,9 +1,4 @@
 return {
-	-- autocompletion for neovim configuration
-	-- {
-	-- 	'folke/neodev.nvim',
-	-- 	opts = { lspconfig = false },
-	-- },
 	-- formatting
 	{
 		'stevearc/conform.nvim',
@@ -27,15 +22,16 @@ return {
 		end,
 	},
 	-- LSP
+	{ 'folke/neodev.nvim', opts = {} },
 	{
 		'neovim/nvim-lspconfig',
-		opts = function()
-			return {
+		dependencies = { 'folke/neodev.nvim' },
+		opts = function(_, opts)
+			return vim.tbl_extend('force', opts, {
 				servers = {
-					-- lua_ls = { before_init = require('neodev.lsp').before_init },
-					lua_ls = {},
+					lua_ls = { before_init = require('neodev.lsp').before_init },
 				},
-			}
+			})
 		end,
 	},
 }
