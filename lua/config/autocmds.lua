@@ -72,6 +72,7 @@ local mode_hl_groups = {
 	[''] = 'ModeVisual',
 	v = 'ModeVisual',
 	V = 'ModeVisual',
+	['\22'] = 'ModeVisual',
 	n = 'ModeNormal',
 	no = 'ModeNormal',
 	i = 'ModeInsert',
