@@ -39,6 +39,10 @@ require('lazy').setup({
 	change_detection = {
 		enabled = false,
 	},
+	-- any plugins with dev = true will attempt to load from this local path
+	dev = {
+		path = '~/code/nvim',
+	},
 })
 require('config.keymaps')
 -- require('custom.hitch-detector.init')

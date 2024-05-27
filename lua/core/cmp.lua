@@ -1,3 +1,8 @@
 return {
-	{ dir = '~/code/nvim/blink', build = 'make', config = true },
+	{
+		'saghen/blink.nvim',
+		dev = true,
+		build = 'make',
+		config = true,
+	},
 }
