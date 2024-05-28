@@ -36,6 +36,9 @@ opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 opt.wrap = true -- Line wrapping
 
+-- don't show the neovim dashboard
+opt.shortmess:append('I')
+
 -- statusline
 opt.cmdheight = 0
 opt.laststatus = 3
