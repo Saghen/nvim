@@ -1,15 +1,15 @@
 return {
-	{
-		'nvim-telescope/telescope-fzf-native.nvim',
-		dependencies = {
-			'nvim-telescope/telescope.nvim',
-		},
-		build = 'make',
-		enabled = vim.fn.executable('make') == 1,
-		config = function()
-			require('telescope').load_extension('fzf')
-		end,
-	},
+	-- {
+	-- 	'nvim-telescope/telescope-fzf-native.nvim',
+	-- 	dependencies = {
+	-- 		'nvim-telescope/telescope.nvim',
+	-- 	},
+	-- 	build = 'make',
+	-- 	enabled = vim.fn.executable('make') == 1,
+	-- 	config = function()
+	-- 		require('telescope').load_extension('fzf')
+	-- 	end,
+	-- },
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
@@ -88,6 +88,32 @@ return {
 					},
 				},
 			}
+		end,
+	},
+
+	-- zoxide integration
+	{
+		'jvgrootveld/telescope-zoxide',
+		keys = {
+			{ '<leader>fz', "<cmd>lua require('telescope').extensions.zoxide.list()<cr>", desc = 'Z' },
+		},
+		config = function()
+			require('telescope').load_extension('zoxide')
+		end,
+	},
+
+	-- fuzzy search over all repos on the system
+	{
+		'cljoly/telescope-repo.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+		},
+		keys = {
+			{ '<leader>fg', "<cmd>lua require'telescope'.extensions.repo.list{}<cr>", desc = 'Git Repositories' },
+		},
+		config = function()
+			require('telescope').load_extension('repo')
 		end,
 	},
 }

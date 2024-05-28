@@ -6,10 +6,6 @@ return {
 		dependencies = {
 			-- 'nvim-treesitter/nvim-treesitter-textobjects',
 		},
-		keys = {
-			-- { '<C-Space>', desc = 'Increment selection', mode = { 'n', 'v' } },
-			{ '<bs>', desc = 'Decrement selection', mode = 'x' },
-		},
 		---@type TSConfig
 		---@diagnostic disable-next-line: missing-fields
 		opts = {

@@ -5,7 +5,6 @@ return {
 		dependencies = {
 			'nvim-tree/nvim-web-devicons',
 		},
-		event = 'VeryLazy',
 		config = true,
 	},
 
@@ -46,6 +45,14 @@ return {
 				-- yellow = vim.g.colors.yellow,
 			},
 			highlights = {
+				Blue = { fg = '$blue' },
+				Cyan = { fg = '$cyan' },
+				Green = { fg = '$green' },
+				Orange = { fg = '$orange' },
+				Purple = { fg = '$purple' },
+				Red = { fg = '$red' },
+				Yellow = { fg = '$yellow' },
+
 				Primary = { fg = '$blue' },
 				-- fixme: breaks copilot and lines with LSP hints
 				-- Comment = { fg = '$blue' },
@@ -62,6 +69,8 @@ return {
 				WinSeparator = { fg = '$bg2', bg = '$bg_d' },
 				WinBar = { bg = '$bg0' },
 				WinBarNC = { bg = '$bg0' },
+				StatusLine = { bg = '$bg0' },
+				StatusLineNC = { bg = '$bg0' },
 
 				BufferCurrentMod = { fg = '$yellow', fmt = 'bold' },
 

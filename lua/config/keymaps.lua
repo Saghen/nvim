@@ -93,7 +93,7 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 -- lazy
-map('n', '<leader>ul', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
 -- ui
 map('n', '<leader>uw', '<cmd>set wrap!<cr>', { desc = 'Toggle line wrapping' })

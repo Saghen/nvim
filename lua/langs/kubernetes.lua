@@ -19,12 +19,12 @@ return {
 	{ 'towolf/vim-helm', event = 'VeryLazy' },
 	{
 		'someone-stole-my-name/yaml-companion.nvim',
-		lazy = false,
 		dependencies = {
 			{ 'neovim/nvim-lspconfig' },
 			{ 'nvim-lua/plenary.nvim' },
 			{ 'nvim-telescope/telescope.nvim' },
 		},
+    ft = "yaml",
 		keys = {
 			{ '<leader>fy', '<cmd>Telescope yaml_schema<CR>', desc = 'YAML Schemas' },
 		},

@@ -36,10 +36,9 @@ opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 opt.wrap = true -- Line wrapping
 
--- disable statusline, otherwise set to 3 for compat with edgy.nvim
-opt.laststatus = 0
-api.nvim_set_hl(0, 'Statusline', { link = 'Normal' })
-api.nvim_set_hl(0, 'StatuslineNC', { link = 'Normal' })
+-- statusline
+opt.cmdheight = 0
+opt.laststatus = 3
 local str = string.rep('-', api.nvim_win_get_width(0))
 opt.statusline = str
 

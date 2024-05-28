@@ -25,12 +25,12 @@ require('lazy').setup({
 			-- disable some rtp plugins
 			disabled_plugins = {
 				'gzip',
-				-- "matchit",
+				'matchit',
 				'matchparen',
 				'netrwPlugin',
 				'tarPlugin',
 				'tohtml',
-				-- 'tutor',
+				'tutor',
 				'zipPlugin',
 			},
 		},
@@ -42,6 +42,7 @@ require('lazy').setup({
 	-- any plugins with dev = true will attempt to load from this local path
 	dev = {
 		path = '~/code/nvim',
+		fallback = true,
 	},
 })
 require('config.keymaps')

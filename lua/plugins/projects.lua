@@ -1,23 +1,7 @@
 return {
-	-- fuzzy search over all repos on the system
-	{
-		'cljoly/telescope-repo.nvim',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope.nvim',
-		},
-		keys = {
-			{ '<leader>fg', "<cmd>lua require'telescope'.extensions.repo.list{}<cr>", desc = 'Git Repositories' },
-		},
-		config = function()
-			require('telescope').load_extension('repo')
-		end,
-	},
-
 	-- project and session management
 	{
 		'coffebar/neovim-project',
-		lazy = false,
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'Shatur/neovim-session-manager',

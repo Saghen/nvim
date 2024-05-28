@@ -22,7 +22,7 @@ return {
 			{
 				'<Backspace>',
 				'``',
-				desc = 'Jump to last jump location',
+				desc = 'Jump to last edit location',
 			},
 			{
 				'<S-Backspace>',
