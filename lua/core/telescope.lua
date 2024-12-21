@@ -19,7 +19,6 @@ return {
 			{ "<leader>'", '<cmd>Telescope registers<cr>', desc = 'Registers' },
 			{ '<leader>y', '<cmd>Telescope lsp_document_symbols<cr>', desc = 'Goto Symbol' },
 			{ '<leader>r', '<cmd>Telescope resume<cr>', desc = 'Resume last search' },
-			{ '<leader><space>', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
 
 			-- find
 			{ '<leader>ff', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
@@ -57,6 +56,7 @@ return {
 				desc = 'Neovim Config',
 			},
 			{ '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
+			{ '<leader>ss', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
 			{ '<leader>cl', '<cmd>Telescope filetypes<cr>', desc = 'Pick Language' },
 		},
 		opts = function()

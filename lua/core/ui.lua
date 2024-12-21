@@ -22,6 +22,7 @@ return {
 		--- @class wk.Opts
 		opts = {
 			preset = 'helix',
+			delay = 500,
 			--- @type wk.Spec
 			spec = {
 				{
@@ -70,7 +71,7 @@ return {
 	-- UI for showing key presses, useful for recording
 	{
 		'NStefan002/screenkey.nvim',
-		cmd = 'ScreenKey',
+		cmd = 'Screenkey',
 		version = '*',
 		opts = {
 			win_opts = {
