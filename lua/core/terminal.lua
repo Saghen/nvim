@@ -19,6 +19,7 @@ return {
 	-- nested neovim instances open in the parent
 	{
 		'willothy/flatten.nvim',
+		version = '*',
 		lazy = false,
 		priority = 1001,
 		opts = {

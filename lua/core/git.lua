@@ -88,18 +88,7 @@ return {
 		'aaronhallaert/advanced-git-search.nvim',
 		cmd = 'AdvancedGitSearch',
 		dependencies = {
-			{
-				'nvim-telescope/telescope.nvim',
-				opts = {
-					extensions = {
-						advanced_git_search = {
-							show_builtin_git_pickers = true, -- show builtin pickers for show_custom_functions
-							browse_command = 'GitLink! rev={commit_hash}',
-							diff_plugin = 'diffview',
-						},
-					},
-				},
-			},
+			'nvim-telescope/telescope.nvim',
 			'sindrets/diffview.nvim',
 			'linrongbin16/gitlinker.nvim',
 		},
@@ -114,11 +103,16 @@ return {
 			{ '<leader>gsg', '<cmd>AdvancedGitSearch show_custom_functions<cr>', desc = 'Pick a picker' },
 		},
 		config = function()
+			require('telescope').setup({
+				extensions = {
+					advanced_git_search = {
+						show_builtin_git_pickers = true, -- show builtin pickers for show_custom_functions
+						browse_command = 'GitLink! rev={commit_hash}',
+						diff_plugin = 'diffview',
+					},
+				},
+			})
 			require('telescope').load_extension('advanced_git_search')
-			-- require('advanced_git_search').setup({
-			-- 	diff_plugin = 'diffview',
-			-- 	show_builtin_git_pickers = true,
-			-- })
 		end,
 	},
 

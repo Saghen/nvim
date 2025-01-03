@@ -37,6 +37,7 @@ return {
 	{
 		'neovim/nvim-lspconfig',
 		opts = function(_, opts)
+			opts.servers.cssls = {}
 			opts.servers.vtsls = {}
 			-- opts.servers.eslint = {}
 			-- opts.servers.biome = {}

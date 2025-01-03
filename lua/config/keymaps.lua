@@ -8,6 +8,11 @@ map({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent =
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
+-- better ^/$ via gh/gl/gs
+map({ 'v', 'n' }, 'gl', '$', { noremap = true, silent = true })
+map({ 'v', 'n' }, 'gh', '0', { noremap = true, silent = true })
+map({ 'v', 'n' }, 'gs', '^', { noremap = true, silent = true })
+
 -- Move to window using the <ctrl> hjkl keys
 map({ 'n', 't' }, '<C-h>', function()
 	vim.cmd.wincmd('h')
@@ -73,11 +78,9 @@ map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsea
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next search result' })
-map('x', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next search result' })
-map('o', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next search result' })
+map({ 'x', 'o' }, 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next search result' })
 map('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev search result' })
-map('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev search result' })
-map('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev search result' })
+map({ 'x', 'o' }, 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev search result' })
 
 -- quit
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
