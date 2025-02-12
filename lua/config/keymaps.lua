@@ -26,18 +26,36 @@ end, { desc = 'Go to upper window' })
 map({ 'n' }, '<C-l>', function() -- TODO: not used for terminal because we want clear
 	vim.cmd.wincmd('l')
 end, { desc = 'Go to right window' })
-map({ 'n', 't' }, '<S-Left>', '<C-w>h', { desc = 'Go to left window', remap = true })
-map({ 'n', 't' }, '<S-Down>', '<C-w>j', { desc = 'Go to lower window', remap = true })
-map({ 'n', 't' }, '<S-Up>', '<C-w>k', { desc = 'Go to upper window', remap = true })
-map({ 'n', 't' }, '<S-Right>', '<C-w>l', { desc = 'Go to right window', remap = true })
+map({ 'n', 't' }, '<S-Left>', function()
+	vim.cmd.wincmd('h')
+end, { desc = 'Go to left window', remap = true })
+map({ 'n', 't' }, '<S-Down>', function()
+	vim.cmd.wincmd('j')
+end, { desc = 'Go to lower window', remap = true })
+map({ 'n', 't' }, '<S-Up>', function()
+	vim.cmd.wincmd('k')
+end, { desc = 'Go to upper window', remap = true })
+map({ 'n', 't' }, '<S-Right>', function()
+	vim.cmd.wincmd('l')
+end, { desc = 'Go to right window', remap = true })
 
 -- buffers
-map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
-map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
 map('n', ']b', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-map('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
-map('n', '<leader><backspace>', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+
+local function switch_to_nth_previous_buffer(n)
+	return function()
+		local prev_buf = require('tuque.buffer-history').get_nth_previous_buffer(n)
+		if prev_buf ~= nil then
+			vim.api.nvim_win_set_buf(0, prev_buf)
+		else
+			vim.notify('No previous buffer found')
+		end
+	end
+end
+map('n', '<leader>bb', switch_to_nth_previous_buffer(1), { desc = 'Other buffer' })
+map('n', '<backspace>', switch_to_nth_previous_buffer(1), { desc = 'Other buffer' })
+map('n', '<S-backspace>', switch_to_nth_previous_buffer(2), { desc = 'Other buffer' })
 
 -- jump to next/prev file
 map('n', '[f', function()

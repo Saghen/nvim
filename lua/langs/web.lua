@@ -2,7 +2,8 @@
 local choose_formatter = function()
 	local cwd = vim.fn.getcwd()
 	local has_biome = vim.fn.filereadable(cwd .. '/biome.json')
-	return has_biome == 1 and { 'biome' } or { 'prettierd' }
+	return has_biome == 1 and { require('efmls-configs.formatters.biome') }
+		or { require('efmls-configs.formatters.prettier_d') }
 end
 
 return {
@@ -59,21 +60,20 @@ return {
 				'handlebars',
 				'svelte',
 			})
-			local prettierd = require('efmls-configs.formatters.prettier_d')
-			opts.servers.efm.settings.languages.javascript = { prettierd }
-			opts.servers.efm.settings.languages.javascriptreact = { prettierd }
-			opts.servers.efm.settings.languages.typescript = { prettierd }
-			opts.servers.efm.settings.languages.typescriptreact = { prettierd }
-			opts.servers.efm.settings.languages.css = { prettierd }
-			opts.servers.efm.settings.languages.scss = { prettierd }
-			opts.servers.efm.settings.languages.less = { prettierd }
-			opts.servers.efm.settings.languages.html = { prettierd }
-			opts.servers.efm.settings.languages.json = { prettierd }
-			opts.servers.efm.settings.languages.jsonc = { prettierd }
-			opts.servers.efm.settings.languages.yaml = { prettierd }
-			opts.servers.efm.settings.languages.graphql = { prettierd }
-			opts.servers.efm.settings.languages.handlebars = { prettierd }
-			opts.servers.efm.settings.languages.svelte = { prettierd }
+			opts.servers.efm.settings.languages.javascript = choose_formatter()
+			opts.servers.efm.settings.languages.javascriptreact = choose_formatter()
+			opts.servers.efm.settings.languages.typescript = choose_formatter()
+			opts.servers.efm.settings.languages.typescriptreact = choose_formatter()
+			opts.servers.efm.settings.languages.css = choose_formatter()
+			opts.servers.efm.settings.languages.scss = choose_formatter()
+			opts.servers.efm.settings.languages.less = choose_formatter()
+			opts.servers.efm.settings.languages.html = choose_formatter()
+			opts.servers.efm.settings.languages.json = choose_formatter()
+			opts.servers.efm.settings.languages.jsonc = choose_formatter()
+			opts.servers.efm.settings.languages.yaml = choose_formatter()
+			opts.servers.efm.settings.languages.graphql = choose_formatter()
+			opts.servers.efm.settings.languages.handlebars = choose_formatter()
+			opts.servers.efm.settings.languages.svelte = choose_formatter()
 		end,
 	},
 }

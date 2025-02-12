@@ -21,11 +21,6 @@ return {
 					node_decremental = 'V',
 				},
 			},
-			textobjects = {
-				move = {
-					enable = false,
-				},
-			},
 
 			auto_install = true,
 			ensure_installed = {

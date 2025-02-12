@@ -1,50 +1,69 @@
--- TODO: startup profiling
 return {
 	{
-		enabled = false,
-		-- enabled = os.getenv('NVIM_PROFILE') ~= nil,
+		enabled = os.getenv('NVIM_PROFILE') ~= nil or os.getenv('NVIM_DEV') ~= nil,
 		'folke/snacks.nvim',
 		lazy = false,
 		priority = 1000,
-		opts = function()
+		keys = {
+			{
+				'<leader>bP',
+				function()
+					require('snacks').picker.files({ layout = 'ivy' })
+				end,
+				desc = 'Find Files (snacks)',
+			},
+		},
+		opts = {
+			picker = {},
+			profiler = {
+				filter_mod = {
+					['^vim%.'] = true,
+				},
+				filter_fn = {
+					default = true,
+					-- ['^blink.delimiters%.'] = false,
+					-- ['^blink.indent%.'] = false,
+					-- ['^blink.cmp%.'] = false,
+					-- ['^blink.cmp.completion.windows.render%.'] = false,
+					-- ['blink.cmp.sources.snippets.registry'] = false,
+					--
+					-- ['^smart-open%.'] = true,
+					-- ['^telescope%.'] = true,
+					-- ['^which-key%.'] = false,
+					-- ['which-key.buf.get'] = true,
+				},
+			},
+		},
+		config = function()
+			if os.getenv('NVIM_PROFILE') == vim.NIL then
+				return
+			end
+
 			local Snacks = require('snacks')
 			-- Toggle the profiler
 			Snacks.toggle.profiler():map('<f1>')
 			-- Toggle the profiler highlights
 			Snacks.toggle.profiler_highlights():map('<f2>')
-
-			return {
-				profiler = {
-					filter_mod = {
-						default = false,
-						['^blink.cmp%.'] = true,
-						['^blink.cmp.completion.windows.render%.'] = false,
-						['blink.cmp.sources.snippets.registry'] = false,
-						-- ['^luasnip%.'] = true,
-						-- ['^rainbow-delimiters%.'] = true,
-					},
-				},
-			}
 		end,
 	},
 	{
-		enabled = os.getenv('NVIM_PROFILE') ~= nil,
+		enabled = os.getenv('NVIM_PROFILE_OLD') ~= nil,
 		'stevearc/profile.nvim',
 		config = function()
-			local should_profile = os.getenv('NVIM_PROFILE')
+			local should_profile = os.getenv('NVIM_PROFILE_OLD')
 			if should_profile then
 				local profile = require('profile')
 				profile.instrument_autocmds()
-				local range = os.getenv('NVIM_PROFILE')
+				local range = os.getenv('NVIM_PROFILE_OLD')
 				if range == '1' or range == 'start' then
 					range = '*'
 				end
 
-				profile.ignore('vim.tbl_*')
-				profile.ignore('vim.shared.*')
-				profile.ignore('vim._editor.*')
-				profile.ignore('blink.cmp.windows.lib.render.*')
-				profile.ignore('blink.cmp.windows.render_item*')
+				-- profile.ignore('vim.tbl_*')
+				-- profile.ignore('vim.shared.*')
+				-- profile.ignore('vim._editor.*')
+				-- profile.ignore('blink.cmp.windows.lib.render.*')
+				-- profile.ignore('blink.cmp.windows.render_item*')
 				profile.instrument(range)
 				if should_profile:lower():match('^start') then
 					profile.start(range)

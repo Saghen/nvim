@@ -26,7 +26,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('K', vim.lsp.buf.hover, { desc = 'Hover' })
 		map('gK', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
 		map('<c-k>', vim.lsp.buf.signature_help, { mode = 'i', desc = 'Signature Help' })
-		map('<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action', mode = { 'n', 'v' } })
 		map('<leader>cA', function()
 			vim.lsp.buf.code_action({
 				context = {
@@ -90,6 +89,14 @@ return {
 					end
 				end,
 				desc = 'Toggle format on save',
+			},
+			{
+				'<leader>ud',
+				function()
+					vim.diagnostic.config({ underline = not not vim.g.diagnostic_enabled })
+					vim.g.diagnostic_enabled = not vim.g.diagnostic_enabled
+				end,
+				desc = 'Toggle diagnostic underline',
 			},
 		},
 		opts = {
@@ -166,6 +173,26 @@ return {
 			highlights = {
 				LiveRenameCurrent = { fg = '$blue', bg = '$diff_change', fmt = '$none' },
 				LiveRenameOther = { fg = '$red', bg = '$diff_delete' },
+			},
+		},
+	},
+
+	-- Code actions
+	{
+		'rachartier/tiny-code-action.nvim',
+		dependencies = {
+			{ 'nvim-lua/plenary.nvim' },
+			{ 'nvim-telescope/telescope.nvim' },
+		},
+		event = 'LspAttach',
+		opts = {},
+		keys = {
+			{
+				'<leader>ca',
+				function()
+					require('tiny-code-action').code_action()
+				end,
+				desc = 'Code Action',
 			},
 		},
 	},

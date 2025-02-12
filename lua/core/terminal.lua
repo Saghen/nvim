@@ -39,12 +39,12 @@ return {
 		lazy = false,
 		keys = {
 			{
-				[[<C-\>]],
+				'<leader>t',
 				toggle_term,
 				desc = 'Focus terminal',
 			},
 			{
-				'<leader>t',
+				'~',
 				toggle_term,
 				desc = 'Focus terminal',
 			},

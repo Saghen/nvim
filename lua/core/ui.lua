@@ -93,19 +93,6 @@ return {
 		},
 	},
 
-	-- scrollbar
-	{
-		enabled = os.getenv('NVIM_DEV') == nil,
-		'lewis6991/satellite.nvim',
-		opts = {
-			handlers = {
-				cursor = { enable = false },
-				gitsigns = { enable = false },
-				marks = { enable = false },
-			},
-		},
-	},
-
 	-- winbar, floating top right
 	{
 		'b0o/incline.nvim',
@@ -210,12 +197,8 @@ return {
 		opts = {
 			notification = { window = { normal_hl = 'Normal' } },
 			integration = {
-				['nvim-tree'] = {
-					enable = false,
-				},
-				['xcodebuild-nvim'] = {
-					enable = false,
-				},
+				['nvim-tree'] = { enable = false },
+				['xcodebuild-nvim'] = { enable = false },
 			},
 		},
 	},

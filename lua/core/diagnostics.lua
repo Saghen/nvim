@@ -56,7 +56,8 @@ return {
 
 	-- TODO: remove the lowercase keywords since it's non-standard
 	{
-		enabled = os.getenv('NVIM_DEV') == nil,
+		enabled = false,
+		-- enabled = os.getenv('NVIM_DEV') == nil,
 		'folke/todo-comments.nvim',
 		lazy = false,
 		keys = {

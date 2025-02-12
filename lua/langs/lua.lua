@@ -1,12 +1,4 @@
 return {
-	-- console/scratchpad
-	{
-		'yarospace/lua-console.nvim',
-		lazy = true,
-		keys = { { '<leader>il', desc = 'Lua Console' } },
-		opts = { mappings = { toggle = '<leader>il' } },
-	},
-
 	-- treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
@@ -20,10 +12,25 @@ return {
 			end
 		end,
 	},
+
 	-- LSP
 	{
 		'folke/lazydev.nvim',
-		ft = 'lua', -- only load on lua files
+		ft = 'lua',
+		dependencies = {
+			'Bilal2453/luvit-meta',
+			{
+				'saghen/blink.cmp',
+				opts = {
+					sources = {
+						default = { 'lazydev' },
+						providers = {
+							lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', fallbacks = { 'lsp' } },
+						},
+					},
+				},
+			},
+		},
 		opts = {
 			--- @module 'lazydev'
 			--- @type lazydev.Library.spec[]
@@ -35,28 +42,19 @@ return {
 		},
 	},
 	{
-		'saghen/blink.cmp',
-		dependencies = { 'folke/lazydev.nvim' },
-		opts = {
-			sources = {
-				default = { 'lazydev' },
-				providers = {
-					lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', fallbacks = { 'lsp' } },
-				},
-			},
-		},
-	},
-	{ 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
-	{
 		'neovim/nvim-lspconfig',
 		opts = function(_, opts)
 			table.insert(opts.servers.efm.filetypes, 'lua')
 			opts.servers.efm.settings.languages.lua = { require('efmls-configs.formatters.stylua') }
-			opts.servers.lua_ls = os.getenv('NVIM_DEV') ~= nil
-					and {
-						cmd = { '/home/saghen/code/nvim/lua-language-server/bin/lua-language-server' },
-					}
-				or {}
+			opts.servers.lua_ls = {
+				-- cmd = {
+				-- 	'/home/saghen/code/nvim/emmylua-analyzer-rust/target/release/emmylua_ls',
+				-- 	'--log-path',
+				-- 	'/tmp/emmylua',
+				-- 	'--log-level',
+				-- 	'debug',
+				-- },
+			}
 		end,
 	},
 }

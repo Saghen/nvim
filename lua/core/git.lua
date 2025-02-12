@@ -1,15 +1,22 @@
+local function gitsigns_cmd(cmd)
+	return function()
+		vim.cmd('Gitsigns attach')
+		vim.cmd('Gitsigns ' .. cmd)
+	end
+end
+
 return {
 	{
 		enabled = os.getenv('NVIM_DEV') == nil,
 		'lewis6991/gitsigns.nvim',
-		lazy = false,
+		event = 'VeryLazy',
 		keys = {
-			{ '<leader>gS', '<cmd>Gitsigns stage_hunk<cr>', desc = 'Stage hunk' },
-			{ '<leader>gu', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = 'Undo stage hunk' },
-			{ '<leader>gb', '<cmd>Gitsigns blame<cr>', desc = 'Blame' },
-			{ '<leader>gd', '<cmd>Gitsigns diffthis<cr>', desc = 'Diff this' },
+			{ '<leader>gS', gitsigns_cmd('stage_hunk'), desc = 'Stage hunk' },
+			{ '<leader>gu', gitsigns_cmd('undo_stage_hunk'), desc = 'Undo stage hunk' },
+			{ '<leader>gb', gitsigns_cmd('blame'), desc = 'Blame' },
+			{ '<leader>gd', gitsigns_cmd('diffthis'), desc = 'Diff this' },
 		},
-		opts = {},
+		opts = { auto_attach = false },
 	},
 
 	-- convert git branches/files to remote URLs
@@ -118,7 +125,7 @@ return {
 
 	-- main client
 	{
-		'Saghen/neogit',
+		'saghen/neogit',
 		branch = 'configurable-popup-kind',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
@@ -150,6 +157,10 @@ return {
 				commit_editor = {
 					['<enter>'] = 'Submit',
 					['<backspace>'] = 'Abort',
+				},
+				status = {
+					['<cr>'] = false,
+					['<leader><cr>'] = 'GoToFile',
 				},
 			},
 		},

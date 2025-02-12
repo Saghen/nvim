@@ -1,7 +1,6 @@
 return {
 	{
 		'folke/flash.nvim',
-		---@type Flash.Config
 		opts = {},
     -- stylua: ignore
     keys = {
@@ -9,17 +8,7 @@ return {
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x", "n" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
-	},
-
-	-- highlights unique targets for f/F/t/T
-	{
-		'jinh0/eyeliner.nvim',
-		opts = {
-			highlight_on_key = true,
-			dim = true,
-		},
 	},
 
 	-- skip punctuation, subwords
@@ -54,23 +43,23 @@ return {
 		dependencies = { 'nvim-telescope/telescope.nvim' },
 		keys = {
 			{
-				'<Backspace>',
+				'-',
 				'``',
 				desc = 'Jump to last edit location',
 			},
-			{
-				'<S-Backspace>',
-				function()
-					require('before').jump_to_last_edit()
-				end,
-				desc = 'Jump to previous entry in the edit history',
-			},
+			-- {
+			-- 	'<leader>-',
+			-- 	function()
+			-- 		require('before').jump_to_last_edit()
+			-- 	end,
+			-- 	desc = 'Jump to previous entry in the edit history',
+			-- },
 			{
 				'<leader>fe',
 				function()
 					require('before').show_edits_in_telescope()
 				end,
-				desc = 'Edited buffers',
+				desc = 'Edits',
 			},
 		},
 		config = true,

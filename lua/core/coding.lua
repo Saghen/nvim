@@ -1,5 +1,5 @@
 return {
-	{ 'echasnovski/mini.ai' },
+	{ 'echasnovski/mini.ai', opts = {} },
 
 	{
 		'Wansmer/treesj',
@@ -112,5 +112,20 @@ return {
 				desc = 'Delete Buffer (Force)',
 			},
 		},
+	},
+
+	{
+		'cshuaimin/ssr.nvim',
+		keys = {
+			{
+				'<leader>sR',
+				function()
+					require('ssr').open()
+				end,
+				desc = 'Search and replace with treesitter',
+				mode = { 'n', 'v' },
+			},
+		},
+		opts = {},
 	},
 }

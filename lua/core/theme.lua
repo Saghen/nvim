@@ -94,7 +94,7 @@ return {
 				BlinkCmpGhostText = { fg = '$grey' },
 				BlinkCmpMenu = { bg = '$bg1' },
 				BlinkCmpMenuSelection = { bg = '$bg3' },
-				BlinkCmpLabelMatch = { fg = '$blue' },
+				BlinkCmpLabelMatch = { fmt = 'bold' },
 				BlinkCmpLabelDetail = { fg = '$light_grey' },
 				BlinkCmpLabelDescription = { fg = '$light_grey' },
 				BlinkCmpDoc = { bg = '$bg_d' },
@@ -127,13 +127,13 @@ return {
 				ModeReplace = { fg = '$red', bg = '$bg1' },
 				ModeTerminal = { fg = '$yellow', bg = '$bg1' },
 
-				TelescopePathSeparator = { fg = '$light_grey' },
-
 				MiniClueBorder = { fg = '$bg_d', bg = '$bg_d' },
 				MiniClueSeparator = { fg = '$bg2' },
 				MiniClueTitle = { fg = '$blue', bg = '$bg_d' },
 				MiniClueDescGroup = { fg = '$grey', bg = '$bg_d' },
 				MiniClueDescSingle = { bg = '$bg_d' },
+
+				TelescopePathSeparator = { fg = '$light_grey' },
 
 				TelescopePreviewBorder = { fg = '$grey' },
 				TelescopePromptBorder = { fg = '$grey' },
@@ -142,9 +142,6 @@ return {
 				TelescopePreviewTitle = { fg = '$blue' },
 				TelescopePromptTitle = { fg = '$blue' },
 				TelescopeResultsTitle = { fg = '$blue' },
-
-				AvanteNormal = { bg = '$bg_d' },
-				AvanteStatusLine = { bg = '$bg_d', fg = '$bg_d' },
 			},
 		},
 	},

@@ -148,13 +148,12 @@ return {
 
 	-- smarter file opening
 	{
-		dev = true,
 		'danielfalk/smart-open.nvim',
 		branch = '0.3.x',
 		dependencies = { 'kkharji/sqlite.lua' },
 		keys = {
 			{
-				'<space><enter>',
+				'<CR>',
 				function()
 					require('telescope').extensions.smart_open.smart_open({ cwd_only = true })
 				end,

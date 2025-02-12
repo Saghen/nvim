@@ -23,7 +23,7 @@ opt.list = true -- Show some invisible characters (tabs...
 opt.number = true -- Print line number
 opt.pumblend = 0 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
+opt.relativenumber = false -- Relative line numbers
 opt.showmode = false -- We have a status line and modicator
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 opt.ignorecase = true -- Ignore case when searching, unless there's a capital with flash.nvim
@@ -109,17 +109,4 @@ if g.neovide then
 	-- https://github.com/neovide/neovide/issues/1325#issuecomment-1281570219
 	-- g.neovide_font_hinting = 'none'
 	-- g.neovide_font_edging = 'subpixelantialias'
-end
-
--- hack: query caching not working normally for some reason
-local query_parse = vim.treesitter.query.parse
-local cache = {}
-vim.treesitter.query.parse = function(lang, query)
-	local hash = lang .. '-' .. vim.fn.sha256(query)
-	if cache[hash] then
-		return cache[hash]
-	end
-	local result = query_parse(lang, query)
-	cache[hash] = result
-	return result
 end

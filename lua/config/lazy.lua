@@ -6,8 +6,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+if os.getenv('NVIM_LATENCY') ~= nil then
+	require('config.autocmds.latency')
+end
+
+require('config.profiler')
 require('config.options')
 require('config.autocmds')
+require('tuque.buffer-history')
+
 require('lazy').setup({
 	spec = {
 		{ import = 'core' },
@@ -19,10 +26,7 @@ require('lazy').setup({
 		lazy = false, -- whether to lazy load all plugins by default
 		version = false, -- always use the latest git commit
 	},
-	rocks = {
-		hererocks = false,
-	},
-	checker = { enabled = false, frequency = 60 * 60 * 24 * 7 }, -- automatically check for plugin updates every week
+	rocks = { hererocks = false },
 	performance = {
 		rtp = {
 			-- disable some rtp plugins
@@ -38,15 +42,15 @@ require('lazy').setup({
 			},
 		},
 	},
-	-- don't reload when config changes because it doesn't really work anyway?
-	change_detection = {
-		enabled = false,
-		-- notify = false,
-	},
+	-- don't automatically check for plugin updates
+	checker = { enabled = false, frequency = 60 * 60 * 24 * 7 },
+	-- don't reload when config changes
+	change_detection = { enabled = false },
 	-- any plugins with dev = true will attempt to load from this local path
 	dev = {
 		path = '~/code/nvim',
 		fallback = true,
 	},
 })
+
 require('config.keymaps')
