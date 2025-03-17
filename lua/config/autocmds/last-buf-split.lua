@@ -11,6 +11,11 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 			return
 		end
 
+		local prev_buf = vim.fn.bufnr('#')
+		if not vim.api.nvim_buf_is_valid(prev_buf) then
+			return
+		end
+
 		local cur_win = vim.api.nvim_get_current_win()
 		local cur_buf = event.buf
 
@@ -58,6 +63,6 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 		end
 
 		-- Set buffer in adjacent window to previous buffer
-		vim.api.nvim_win_set_buf(adjacent_win, vim.fn.bufnr('#'))
+		vim.api.nvim_win_set_buf(adjacent_win, prev_buf)
 	end,
 })
