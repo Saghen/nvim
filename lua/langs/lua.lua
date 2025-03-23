@@ -2,15 +2,7 @@ return {
 	-- treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
-		opts = function(_, opts)
-			if type(opts.ensure_installed) == 'table' then
-				vim.list_extend(opts.ensure_installed, {
-					'lua',
-					'luadoc',
-					'luap',
-				})
-			end
-		end,
+		opts = { ensure_installed = { 'lua', 'luadoc', 'luap' } },
 	},
 
 	-- LSP
@@ -49,18 +41,9 @@ return {
 			opts.servers.lua_ls = {
 				settings = {
 					Lua = {
-						completion = {
-							callSnippet = 'Replace',
-						},
+						completion = { callSnippet = 'Replace' },
 					},
 				},
-				-- cmd = {
-				-- 	'/home/saghen/code/nvim/emmylua-analyzer-rust/target/release/emmylua_ls',
-				-- 	'--log-path',
-				-- 	'/tmp/emmylua',
-				-- 	'--log-level',
-				-- 	'debug',
-				-- },
 			}
 		end,
 	},

@@ -21,11 +21,7 @@ return {
 	-- treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
-		opts = function(_, opts)
-			if type(opts.ensure_installed) == 'table' then
-				vim.list_extend(opts.ensure_installed, { 'python', 'ninja' })
-			end
-		end,
+		opts = { ensure_installed = { 'python', 'ninja' } },
 	},
 	-- LSP/formatting
 	{

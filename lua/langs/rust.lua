@@ -20,20 +20,15 @@ return {
 	-- treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
-		opts = function(_, opts)
-			if type(opts.ensure_installed) == 'table' then
-				vim.list_extend(opts.ensure_installed, { 'rust' })
-			end
-		end,
+		opts = { ensure_installed = { 'rust' } },
 	},
 
 	-- LSP, code actions and a bunch more
 	{
 		'mrcjkb/rustaceanvim',
-		-- dev = true,
-		-- version = '*',
+		dev = true,
 		ft = 'rust',
-		dependencies = { 'saghen/blink.cmp' },
+		dependencies = 'saghen/blink.cmp',
 	},
 
 	-- formatting

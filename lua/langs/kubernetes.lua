@@ -90,11 +90,7 @@ return {
 	-- treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
-		opts = function(_, opts)
-			if type(opts.ensure_installed) == 'table' then
-				vim.list_extend(opts.ensure_installed, { 'yaml' })
-			end
-		end,
+		opts = { ensure_installed = { 'yaml' } },
 	},
 	-- LSP and schemas for autocompletion
 	{ 'towolf/vim-helm', ft = 'helm' },
