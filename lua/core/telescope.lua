@@ -56,7 +56,7 @@ return {
 				desc = 'Neovim Config',
 			},
 			{ '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
-			{ '<leader>ss', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
+			{ '<leader>sS', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Goto Symbol (Workspace)' },
 			{ '<leader>cl', '<cmd>Telescope filetypes<cr>', desc = 'Pick Language' },
 		},
 		opts = function()
@@ -165,29 +165,36 @@ return {
 		end,
 	},
 
-	-- zoxide integration
+	-- symbol picker
 	{
-		'jvgrootveld/telescope-zoxide',
+		'bassamsdata/namu.nvim',
 		keys = {
-			{ '<leader>fz', "<cmd>lua require('telescope').extensions.zoxide.list()<cr>", desc = 'Z' },
+			{
+				'<leader>ss',
+				function()
+					require('namu.namu_symbols').show()
+				end,
+				desc = 'Symbols (Document)',
+			},
 		},
-		config = function()
-			require('telescope').load_extension('zoxide')
-		end,
-	},
-
-	-- fuzzy search over all repos on the system
-	{
-		'cljoly/telescope-repo.nvim',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope.nvim',
+		opts = {
+			namu_symbols = {
+				enable = true,
+				options = {
+					display = { mode = 'icon' },
+					-- window = { border = { ' ' } },
+					AllowKinds = {
+						rust = {
+							'Function',
+							'Struct',
+							'Enum',
+							'Trait',
+							'Module',
+						},
+					},
+				},
+			},
+			ui_select = { enable = true },
 		},
-		keys = {
-			{ '<leader>fg', "<cmd>lua require'telescope'.extensions.repo.list{}<cr>", desc = 'Git Repositories' },
-		},
-		config = function()
-			require('telescope').load_extension('repo')
-		end,
 	},
 }

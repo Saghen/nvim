@@ -42,6 +42,8 @@ return {
 				desc = 'Quickfix List',
 			},
 		},
+		--- @module 'trouble'
+		--- @type trouble.Config
 		opts = {
 			focus = true,
 			throttle = {
@@ -50,40 +52,6 @@ return {
 			action_keys = {
 				previous = { 'k', '<Up>' },
 				next = { 'j', '<Down>' },
-			},
-		},
-	},
-
-	-- TODO: remove the lowercase keywords since it's non-standard
-	{
-		enabled = false,
-		-- enabled = os.getenv('NVIM_DEV') == nil,
-		'folke/todo-comments.nvim',
-		lazy = false,
-		keys = {
-			{ '<leader>st', '<cmd>TodoTelescope keywords=TODO,HACK,FIX<cr>', desc = 'Todos' },
-		},
-		opts = {
-			signs = false, -- disable signs in sign column
-			keywords = {
-				FIX = {
-					icon = ' ',
-					color = 'error',
-					alt = { 'fix', 'FIXME', 'fixme', 'BUG', 'bug', 'FIXIT', 'fixit', 'ISSUE', 'issue' },
-				},
-				TODO = { icon = ' ', color = 'info', alt = { 'todo' } },
-				HACK = { icon = ' ', color = 'warning', alt = { 'hack' } },
-				WARN = { icon = ' ', color = 'warning', alt = { 'warn', 'WARNING', 'warning', 'XXX', 'xxx' } },
-				PERF = {
-					icon = ' ',
-					alt = { 'perf', 'OPTIM', 'optim', 'PERFORMANCE', 'performance', 'OPTIMIZE', 'optimize' },
-				},
-				NOTE = { icon = ' ', color = 'hint', alt = { 'note', 'INFO', 'info' } },
-				TEST = {
-					icon = '⏲ ',
-					color = 'test',
-					alt = { 'test', 'TESTING', 'testing', 'PASSED', 'passed', 'FAILED', 'failed' },
-				},
 			},
 		},
 	},

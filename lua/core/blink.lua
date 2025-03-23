@@ -1,16 +1,40 @@
 return {
 	{
-		'saghen/blink.cmp',
-		-- version = 'v0.*',
+		'saghen/blink.pick',
 		dev = true,
-		build = 'cargo build --release',
-		-- optional: provides snippets for the snippet source
-		dependencies = 'rafamadriz/friendly-snippets',
+		lazy = false,
+		keys = {
+			{
+				'<leader>bp',
+				function()
+					require('blink_pick').open_window()
+				end,
+				desc = 'Pick',
+			},
+		},
+		config = function()
+			require('blink_pick')
+		end,
+	},
+
+	{
+		'saghen/blink.pairs',
+		dev = true,
+		opts = {},
+	},
+
+	{
+		'saghen/blink.cmp',
+		version = vim.fn.getenv('BLINK_VERSION') or false,
+		dev = vim.fn.getenv('BLINK_VERSION') == vim.NIL,
+		-- dependencies = { 'rafamadriz/friendly-snippets' },
+		-- build = 'cargo build --release',
 		--- @module 'blink.cmp'
 		--- @type blink.cmp.Config
 		opts = {
 			keymap = {
 				preset = 'none',
+
 				['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
 				['<C-e>'] = { 'cancel' },
 				['<C-g>'] = { 'accept' },
@@ -25,27 +49,21 @@ return {
 
 				['<Tab>'] = { 'snippet_forward', 'fallback' },
 				['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+
+				['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 			},
 			appearance = {
 				nerd_font_variant = 'normal',
 				use_nvim_cmp_as_default = true,
 			},
-			sources = { default = { 'lsp', 'buffer', 'path' } },
+			sources = { default = { 'lsp', 'buffer', 'path', 'snippets' } },
+			fuzzy = { prebuilt_binaries = { ignore_version_mismatch = true } },
 
-			signature = { enabled = true },
+			snippets = { preset = 'luasnip' },
+
+			signature = { enabled = true, window = { show_documentation = false } },
 		},
 		opts_extend = { 'sources.default' },
-	},
-	{
-		'neovim/nvim-lspconfig',
-		dependencies = { 'saghen/blink.cmp' },
-		config = function(_, opts)
-			local lspconfig = require('lspconfig')
-			for server, config in pairs(opts.servers) do
-				config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-				lspconfig[server].setup(config)
-			end
-		end,
 	},
 
 	{
@@ -151,7 +169,6 @@ return {
 		},
 		opts = {
 			chartoggle = { enabled = true },
-			delimiters = { enabled = true },
 			select = {
 				enabled = true,
 				mapping = {

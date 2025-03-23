@@ -130,17 +130,6 @@ return {
 		end,
 	},
 
-	-- emulates the LSP definition and references when unsupported
-	{
-		'pechorin/any-jump.vim',
-		keys = {
-			{ 'gR', '<cmd>AnyJump<cr>', desc = 'Grep References' },
-		},
-		init = function()
-			vim.g.any_jump_disable_default_keybindings = 1
-		end,
-	},
-
 	-- rename in-place with the LSP and live feedback
 	{
 		'saecki/live-rename.nvim',

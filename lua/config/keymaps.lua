@@ -1,5 +1,12 @@
 local map = require('tuque.utils').map
 
+-- never use the cmdline window, so remap q: to :q
+-- which is what i usually meant
+-- TODO: causes a delay on `q` in trouble window
+-- map('n', 'q:', ':q<cr>', { desc = 'Quit' })
+
+map('n', '-', '``', { desc = 'Jump to last edit location' })
+
 map('n', 'C', 'ciw', { desc = 'Change inside word' })
 
 -- better up/down - allows moving to wrapped lines
@@ -116,8 +123,12 @@ map('v', '>', '>gv')
 -- lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
--- ui
+-- options
 map('n', '<leader>uw', '<cmd>set wrap!<cr>', { desc = 'Toggle line wrapping' })
+map('n', '<leader>uc', function()
+	local value = vim.opt.conceallevel
+	vim.opt.conceallevel = value == 0 and 2 or 0
+end, { desc = 'Toggle conceal' })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)

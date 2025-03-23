@@ -30,7 +30,8 @@ return {
 	-- LSP, code actions and a bunch more
 	{
 		'mrcjkb/rustaceanvim',
-		version = '*',
+		-- dev = true,
+		-- version = '*',
 		ft = 'rust',
 		dependencies = { 'saghen/blink.cmp' },
 	},

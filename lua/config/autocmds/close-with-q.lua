@@ -21,11 +21,12 @@ vim.api.nvim_create_autocmd('FileType', {
 		'AvanteAsk',
 		'AvanteInput',
 		'markdown',
+		'Trouble',
 	},
 	callback = function(event)
 		local bo = vim.bo[event.buf]
 		if bo.filetype ~= 'markdown' or bo.buftype == 'help' then
-			bo.buflisted = false
+			-- bo.buflisted = false
 			vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
 		end
 	end,

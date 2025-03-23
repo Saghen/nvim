@@ -47,6 +47,13 @@ return {
 			table.insert(opts.servers.efm.filetypes, 'lua')
 			opts.servers.efm.settings.languages.lua = { require('efmls-configs.formatters.stylua') }
 			opts.servers.lua_ls = {
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = 'Replace',
+						},
+					},
+				},
 				-- cmd = {
 				-- 	'/home/saghen/code/nvim/emmylua-analyzer-rust/target/release/emmylua_ls',
 				-- 	'--log-path',

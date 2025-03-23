@@ -144,6 +144,7 @@ return {
 			use_per_project_settings = false,
 			-- the time after which an output console is shown for slow running commands
 			console_timeout = 4000,
+			auto_show_console = false, -- TODO: breaks the UI for some reason
 			-- graph like https://github.com/rbong/vim-flog
 			graph_style = 'unicode',
 

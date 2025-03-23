@@ -7,6 +7,7 @@ return {
 
 	-- shows available keymaps as you type
 	{
+		enabled = os.getenv('NVIM_DEV') == nil,
 		'folke/which-key.nvim',
 		event = 'VeryLazy',
 		keys = {

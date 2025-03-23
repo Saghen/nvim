@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
@@ -15,16 +15,16 @@ require('config.options')
 require('config.autocmds')
 require('tuque.buffer-history')
 
+local spec = { 'core', 'langs', 'profile' }
+if os.getenv('NVIM_DEV') ~= nil then
+	table.insert(spec, 'dev')
+end
+
 require('lazy').setup({
-	spec = {
-		{ import = 'core' },
-		{ import = 'langs' },
-		{ import = 'custom' },
-		{ import = 'profile' },
-	},
+	spec = spec,
 	defaults = {
 		lazy = false, -- whether to lazy load all plugins by default
-		version = false, -- always use the latest git commit
+		version = false, -- default to latest git commit
 	},
 	rocks = { hererocks = false },
 	performance = {
@@ -43,14 +43,13 @@ require('lazy').setup({
 		},
 	},
 	-- don't automatically check for plugin updates
-	checker = { enabled = false, frequency = 60 * 60 * 24 * 7 },
+	checker = { enabled = false },
 	-- don't reload when config changes
 	change_detection = { enabled = false },
 	-- any plugins with dev = true will attempt to load from this local path
-	dev = {
-		path = '~/code/nvim',
-		fallback = true,
-	},
+	dev = { path = '~/code/nvim', fallback = true },
+	-- don't load readmes as help entries
+	readme = { enabled = false },
 })
 
 require('config.keymaps')

@@ -15,71 +15,29 @@ return {
 	-- support comment strings for different treesitter node types (i.e. JSX) and fixes terraform
 	{ 'folke/ts-comments.nvim', event = 'VeryLazy', opts = {} },
 
-	-- find and replace across workspace
-	{
-		'nvim-pack/nvim-spectre',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		keys = {
-			{ '<leader>H', '<cmd>lua require("spectre").toggle()<cr>', desc = 'Find and Replace (Workspace)' },
-		},
-		opts = {
-			is_insert_mode = true, -- open in insert mode
-			live_update = true, -- execute search query immediately
-			lnum_for_results = false, -- show line number for search/replace results
-			-- disable borders
-			line_sep_start = '',
-			result_padding = '',
-			line_sep = '',
-			-- invert colors
-			highlight = {
-				ui = 'Primary',
-				filename = 'Primary',
-				-- todo: change these in theme?
-				search = 'DiffDelete',
-				replace = 'DiffAdd',
-			},
-		},
-	},
-	-- find and replace for file with UI
-	{
-		'chrisgrieser/nvim-rip-substitute',
-		cmd = 'RipSubstitute',
-		keys = {
-			{
-				'<leader>h',
-				function()
-					require('rip-substitute').sub()
-				end,
-				mode = { 'n', 'x' },
-				desc = 'Find and Replace (File)',
-			},
-		},
-	},
-
 	-- todo: fork to support limitting filetypes via lua or contribute
 	{ 'echasnovski/mini.cursorword', version = false, opts = { delay = 400 } },
-	{ 'echasnovski/mini.pairs', event = 'InsertEnter', version = false, opts = {} },
 	{
 		'echasnovski/mini.surround',
 		version = '*',
 		keys = {
-			{ 'gsa', desc = 'Add surrounding', mode = { 'n', 'v' } },
-			{ 'gsd', desc = 'Delete surrounding' },
-			{ 'gsf', desc = 'Find right surrounding' },
-			{ 'gsF', desc = 'Find left surrounding' },
-			{ 'gsh', desc = 'Highlight surrounding' },
-			{ 'gsr', desc = 'Replace surrounding' },
+			{ 'sa', desc = 'Add surrounding', mode = { 'n', 'v' } },
+			{ 'sd', desc = 'Delete surrounding' },
+			{ 'sf', desc = 'Find right surrounding' },
+			{ 'sF', desc = 'Find left surrounding' },
+			{ 'sh', desc = 'Highlight surrounding' },
+			{ 'sr', desc = 'Replace surrounding' },
 		},
 		opts = {
 			-- Number of lines within which surrounding is searched
 			n_lines = 50,
 			mappings = {
-				add = 'gsa', -- Add surrounding in Normal and Visual modes
-				delete = 'gsd', -- Delete surrounding
-				find = 'gsf', -- Find surrounding (to the right)
-				find_left = 'gsF', -- Find surrounding (to the left)
-				highlight = 'gsh', -- Highlight surrounding
-				replace = 'gsr', -- Replace surrounding
+				add = 'sa', -- Add surrounding in Normal and Visual modes
+				delete = 'sd', -- Delete surrounding
+				find = 'sf', -- Find surrounding (to the right)
+				find_left = 'sF', -- Find surrounding (to the left)
+				highlight = 'sh', -- Highlight surrounding
+				replace = 'sr', -- Replace surrounding
 			},
 		},
 	},
@@ -112,20 +70,5 @@ return {
 				desc = 'Delete Buffer (Force)',
 			},
 		},
-	},
-
-	{
-		'cshuaimin/ssr.nvim',
-		keys = {
-			{
-				'<leader>sR',
-				function()
-					require('ssr').open()
-				end,
-				desc = 'Search and replace with treesitter',
-				mode = { 'n', 'v' },
-			},
-		},
-		opts = {},
 	},
 }

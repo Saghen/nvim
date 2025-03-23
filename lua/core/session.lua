@@ -214,10 +214,7 @@ return {
 							return
 						end
 					end
-					local start_time = vim.loop.hrtime()
 					require('session_manager').save_current_session()
-					local end_time = vim.loop.hrtime()
-					print('Session saved in ' .. (end_time - start_time) / 1000000 .. ' ms')
 				end,
 			})
 		end,

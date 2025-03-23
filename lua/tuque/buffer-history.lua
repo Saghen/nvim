@@ -39,7 +39,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
 --- @param n number
 local function get_nth_previous_buffer(n)
 	trim_and_filter_dead()
-	return buffer_history[n + 1]
+
+	-- Add 1 if the requested buffer is the current buffer
+	local current_buf = vim.api.nvim_get_current_buf()
+	if current_buf == buffer_history[n] then
+		n = n + 1
+	end
+
+	return buffer_history[n]
 end
 
 --- @class tuque.BufferHistory
