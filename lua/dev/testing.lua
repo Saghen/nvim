@@ -8,6 +8,10 @@ vim.api.nvim_create_autocmd('BufEnter', {
 
 return {
 	-- { 'neovim/nvim-lspconfig', opts = { servers = { astro = {} } } },
-	{ 'tpope/vim-fugitive', enabled = os.getenv('NVIM_DEV') ~= nil },
-	{ 'milanglacier/yarepl.nvim', enabled = os.getenv('NVIM_DEV') ~= nil, opts = {} },
+	-- { 'tpope/vim-fugitive', enabled = os.getenv('NVIM_DEV') ~= nil },
+	-- { 'milanglacier/yarepl.nvim', enabled = os.getenv('NVIM_DEV') ~= nil, opts = {} },
+	{
+		'neovim/nvim-lspconfig',
+		opts = { servers = { ansiblels = {} } },
+	},
 }

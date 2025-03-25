@@ -15,9 +15,13 @@ require('config.options')
 require('config.autocmds')
 require('tuque.buffer-history')
 
-local spec = { 'core', 'langs', 'profile' }
+local spec = {
+	{ import = 'core' },
+	{ import = 'langs' },
+	{ import = 'profile' },
+}
 if os.getenv('NVIM_DEV') ~= nil then
-	table.insert(spec, 'dev')
+	table.insert(spec, { import = 'dev' })
 end
 
 require('lazy').setup({
