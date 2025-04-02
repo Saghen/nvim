@@ -39,12 +39,7 @@ return {
 		lazy = false,
 		keys = {
 			{
-				'<leader>t',
-				toggle_term,
-				desc = 'Focus terminal',
-			},
-			{
-				'~',
+				'`',
 				toggle_term,
 				desc = 'Focus terminal',
 			},
