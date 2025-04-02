@@ -94,17 +94,21 @@ opt.fillchars = {
 opt.mouse = 'a'
 opt.mousemoveevent = true
 
-opt.guifont = 'IosevkaCustom Nerd Font:h14'
+opt.guifont = 'IosevkaCustom Nerd Font:h17'
 
 -- Support for semantic higlighting https://github.com/neovim/neovim/pull/21100
 g.lsp_semantic_enabled = 1
 
 if g.neovide then
-	opt.linespace = 6
+	opt.linespace = 8
+
 	g.neovide_scale_factor = 1.0
-	g.neovide_refresh_rate = 288
-	g.neovide_cursor_trail_size = 0.1
+	g.neovide_refresh_rate = 240
+	g.neovide_floating_shadow = false
+
+	g.neovide_cursor_trail_size = 0.05
 	g.neovide_cursor_animation_length = 0.05
+
 	g.neovide_scroll_animation_length = 0.1 -- 0.1 to enable, 0 to disable
 	-- https://github.com/neovide/neovide/issues/1325#issuecomment-1281570219
 	-- g.neovide_font_hinting = 'none'
