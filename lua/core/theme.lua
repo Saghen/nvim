@@ -83,9 +83,11 @@ return {
 				RainbowOrangeUnderline = { sp = '$orange', fmt = 'underline' },
 				RainbowPurpleUnderline = { sp = '$purple', fmt = 'underline' },
 				RainbowBlueUnderline = { sp = '$blue', fmt = 'underline' },
+
 				BlinkPairsOrange = { fg = '$orange' },
 				BlinkPairsPurple = { fg = '$purple' },
 				BlinkPairsBlue = { fg = '$blue' },
+				MatchParen = { fg = '$yellow', bg = 'transparent' },
 
 				DashboardHeader = { fg = '$blue' },
 
