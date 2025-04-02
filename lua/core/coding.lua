@@ -12,9 +12,6 @@ return {
 		opts = { use_default_keymap = false, max_join_length = 1000 },
 	},
 
-	-- support comment strings for different treesitter node types (i.e. JSX) and fixes terraform
-	{ 'folke/ts-comments.nvim', event = 'VeryLazy', opts = {} },
-
 	-- todo: fork to support limitting filetypes via lua or contribute
 	{ 'echasnovski/mini.cursorword', version = false, opts = { delay = 400 } },
 	{

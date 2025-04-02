@@ -7,27 +7,32 @@ return {
 			{
 				'<leader>bp',
 				function()
-					require('blink_pick').open_window()
+					require('blink.pick').open_window()
 				end,
 				desc = 'Pick',
 			},
 		},
-		config = function()
-			require('blink_pick')
-		end,
 	},
 
 	{
 		'saghen/blink.pairs',
 		dev = true,
-		opts = {},
+		--- @module 'blink.pairs'
+		--- @type blink.pairs.Config
+		opts = {
+			highlights = {
+				matchparen = {
+					treesitter = false,
+				},
+			},
+			debug = false,
+		},
 	},
 
 	{
 		'saghen/blink.cmp',
 		version = vim.fn.getenv('BLINK_VERSION') or false,
 		dev = vim.fn.getenv('BLINK_VERSION') == vim.NIL,
-		-- dependencies = { 'rafamadriz/friendly-snippets' },
 		-- build = 'cargo build --release',
 		--- @module 'blink.cmp'
 		--- @type blink.cmp.Config
@@ -37,6 +42,7 @@ return {
 
 				['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
 				['<C-e>'] = { 'cancel' },
+				['<C-y>'] = { 'accept' },
 				['<C-g>'] = { 'accept' },
 
 				['<C-t>'] = { 'select_prev' },
@@ -56,10 +62,12 @@ return {
 				nerd_font_variant = 'normal',
 				use_nvim_cmp_as_default = true,
 			},
-			sources = { default = { 'lsp', 'buffer', 'path', 'snippets' } },
+			sources = {
+				default = { 'lsp', 'buffer', 'path' },
+			},
 			fuzzy = { prebuilt_binaries = { ignore_version_mismatch = true } },
 
-			snippets = { preset = 'luasnip' },
+			-- snippets = { preset = 'luasnip' },
 
 			signature = { enabled = true, window = { show_documentation = false } },
 		},

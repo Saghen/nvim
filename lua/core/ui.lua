@@ -165,15 +165,6 @@ return {
 			bottom = {
 				'trouble',
 				{ ft = 'qf', title = 'QuickFix' },
-				{
-					ft = 'help',
-					size = { height = 20 },
-					-- only show help buffers
-					filter = function(buf)
-						return vim.bo[buf].buftype == 'help'
-					end,
-				},
-				{ ft = 'NeogitConsole', height = 20 },
 			},
 			left = {
 				{ ft = 'blink-tree' },
