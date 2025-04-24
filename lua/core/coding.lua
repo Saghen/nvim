@@ -12,7 +12,7 @@ return {
     opts = { use_default_keymap = false, max_join_length = 1000 },
   },
 
-  -- todo: fork to support limitting filetypes via lua or contribute
+  -- todo: use `vim.b.minicursorword_disable` to disable in tree
   { 'echasnovski/mini.cursorword', version = false, opts = { delay = 400 } },
   {
     'echasnovski/mini.surround',

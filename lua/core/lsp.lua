@@ -142,14 +142,27 @@ return {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope.nvim' },
     },
-    opts = {},
     keys = {
       {
-        '<leader>ca',
+        '<leader>cA',
         function() require('tiny-code-action').code_action() end,
         desc = 'Code Action',
       },
     },
+    opts = {},
+  },
+  {
+    'Chaitanyabsprip/fastaction.nvim',
+    keys = {
+      {
+        '<leader>ca',
+        function() require('fastaction').code_action() end,
+        desc = 'Code Action',
+      },
+    },
+    --- @module 'fastaction'
+    --- @type FastActionConfig
+    opts = { dismiss_keys = { 'j', 'k', '<c-c>', 'q', '<Esc>' } },
   },
 
   -- rename in-place with the LSP and live feedback

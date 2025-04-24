@@ -153,10 +153,7 @@ return {
         'trouble',
         { ft = 'qf', title = 'QuickFix' },
       },
-      left = {
-        { ft = 'blink-tree' },
-        { ft = 'neo-tree' },
-      },
+      left = { { ft = 'blink-tree' } },
       right = {
         {
           ft = 'toggleterm',
