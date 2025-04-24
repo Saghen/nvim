@@ -8,9 +8,6 @@ local g = vim.g
 g.mapleader = ' '
 g.maplocalleader = '-'
 
--- todo: maybe better perf
--- vim.o.shell = '/bin/bash'
-
 opt.completeopt = 'menu,menuone,preview'
 opt.clipboard = ''
 
@@ -23,7 +20,7 @@ opt.list = true -- Show some invisible characters (tabs...
 opt.number = true -- Print line number
 opt.pumblend = 0 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = false -- Relative line numbers
+opt.relativenumber = true -- Relative line numbers
 opt.showmode = false -- We have a status line and modicator
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 opt.ignorecase = true -- Ignore case when searching, unless there's a capital with flash.nvim
@@ -44,16 +41,16 @@ opt.wrap = true -- Line wrapping
 opt.shiftwidth = 2 -- Size of an indent
 opt.tabstop = 2 -- Number of spaces tabs count for
 vim.api.nvim_create_autocmd('FileType', { -- doesn't apply to markdown by default for some reason
-	pattern = 'markdown',
-	callback = function()
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-	end,
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+  end,
 })
 
 if os.getenv('NVIM_DEV') ~= nil then
-	opt.swapfile = false
-	opt.shada = ''
+  opt.swapfile = false
+  opt.shada = ''
 end
 
 -- folds
@@ -77,18 +74,18 @@ opt.list = true
 opt.listchars:append('space: ')
 opt.listchars:append('trail:⋅')
 opt.fillchars = {
-	fold = ' ', -- or "⸱"
-	foldopen = '',
-	foldclose = '',
-	foldsep = ' ',
-	diff = '╱',
-	eob = ' ',
+  fold = ' ', -- or "⸱"
+  foldopen = '',
+  foldclose = '',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
 
-	-- controls the border around windows
-	vert = ' ',
-	horiz = ' ',
-	horizup = ' ',
-	horizdown = ' ',
+  -- controls the border around windows
+  vert = ' ',
+  horiz = ' ',
+  horizup = ' ',
+  horizdown = ' ',
 }
 
 opt.mouse = 'a'
@@ -100,17 +97,22 @@ opt.guifont = 'IosevkaCustom Nerd Font:h17'
 g.lsp_semantic_enabled = 1
 
 if g.neovide then
-	opt.linespace = 8
+  opt.linespace = 8
 
-	g.neovide_scale_factor = 1.0
-	g.neovide_refresh_rate = 240
-	g.neovide_floating_shadow = false
+  g.neovide_scale_factor = 1.0
+  g.neovide_floating_shadow = false
 
-	g.neovide_cursor_trail_size = 0.05
-	g.neovide_cursor_animation_length = 0.05
+  g.neovide_underline_stroke_scale = 2
 
-	g.neovide_scroll_animation_length = 0.1 -- 0.1 to enable, 0 to disable
-	-- https://github.com/neovide/neovide/issues/1325#issuecomment-1281570219
-	-- g.neovide_font_hinting = 'none'
-	-- g.neovide_font_edging = 'subpixelantialias'
+  g.neovide_cursor_trail_size = 0.05
+  g.neovide_cursor_animation_length = 0.05
+  g.neovide_cursor_short_animation_length = 0.02
+
+  g.neovide_scroll_animation_length = 0.05 -- 0.1 to enable, 0 to disable
+
+  g.neovide_position_animation_length = 0 -- window animations
+
+  -- https://github.com/neovide/neovide/issues/1325#issuecomment-1281570219
+  -- g.neovide_font_hinting = 'none'
+  -- g.neovide_font_edging = 'subpixelantialias'
 end

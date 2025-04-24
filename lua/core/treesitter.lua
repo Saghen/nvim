@@ -1,73 +1,24 @@
 return {
-	-- treesitter
-	{
-		'nvim-treesitter/nvim-treesitter',
-		event = 'BufRead',
-		build = ':TSUpdate',
-		---@type TSConfig
-		---@diagnostic disable-next-line: missing-fields
-		opts = {
-			-- todo: slow on typescript files?
-			highlight = {
-				-- only enable if we're not profiling
-				enable = os.getenv('NVIM_PROFILE') == nil,
-				disable = { 'nix', 'python', 'go', 'lua' },
-			},
-			indent = { enable = false },
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					node_incremental = 'v',
-					node_decremental = 'V',
-				},
-			},
+  -- treesitter
+  {
+    'nvim-treesitter/nvim-treesitter',
+    event = 'BufRead',
+    build = ':TSUpdate',
+    ---@type TSConfig
+    ---@diagnostic disable-next-line: missing-fields
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = { node_incremental = 'v', node_decremental = 'V' },
+      },
 
-			auto_install = true,
-			ensure_installed = {
-				'c',
-				'c_sharp',
-				'cpp',
-				'diff',
-				'graphql',
-				'haskell',
-				'nix',
-				'php',
-				'python',
-				'query',
-				'regex',
-				'rust',
-				'scala',
-				'vim',
-				'vimdoc',
-				-- shells
-				'bash',
-				'fish',
-				-- config langs
-				'json',
-				'json5',
-				'jsonc',
-				'yaml',
-				'toml',
-				'ini',
-				'csv',
-				'tsv',
-				-- doc langs
-				'latex',
-				'bibtex',
-				'rst',
-				'markdown',
-				'markdown_inline',
-				-- git
-				'git_config',
-				'git_rebase',
-				'gitattributes',
-				'gitcommit',
-				'gitignore',
-			},
-		},
-		config = function(_, opts)
-			require('nvim-treesitter.configs').setup(opts)
-		end,
-		opts_extend = { 'ensure_installed' },
-	},
+      auto_install = true,
+      -- because they won't be auto-installed but useful in markdown
+      ensure_installed = { 'markdown_inline', 'html' },
+    },
+    config = function(_, opts) require('nvim-treesitter.configs').setup(opts) end,
+    opts_extend = { 'ensure_installed' },
+  },
 }
