@@ -42,6 +42,9 @@ return {
           { '<leader>u', group = 'Options' },
           { '<leader>w', group = 'Windows' },
           { '<leader>x', group = 'Quickfix' },
+          { '<C-a>', group = 'AI' },
+          { '<C-a>g', group = 'AI Prompt' },
+          { '<C-a>w', group = 'AI Whisper' },
         },
       },
       icons = {
