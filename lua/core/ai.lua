@@ -5,13 +5,9 @@ return {
     'supermaven-inc/supermaven-nvim',
     event = 'InsertEnter',
     opts = {
-      keymaps = {
-        accept_suggestion = '<M-i>',
-      },
-      color = {
-        -- TODO: use onedark.nvim
-        suggestion_color = '#585b70',
-      },
+      keymaps = { accept_suggestion = '<M-i>' },
+      -- TODO: use onedark.nvim
+      color = { suggestion_color = '#585b70' },
       log_level = 'off',
     },
   },
@@ -95,7 +91,7 @@ return {
       --- @type GpConfig
       local cfg = {
         -- LLMs
-        chat_user_prefix = '**User**',
+        chat_user_prefix = '**User:**',
         chat_assistant_prefix = { '**Agent:** ', '{{agent}}' },
         chat_template = table.concat({
           '# topic: ?',

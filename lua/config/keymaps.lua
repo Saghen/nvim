@@ -11,6 +11,8 @@ map('n', "'", '`') -- To make room for ` as terminal key
 map('n', 'C', 'ciw', { desc = 'Change inside word' })
 map('n', 'Q', '<cmd>q<cr>', { desc = 'Quit' })
 
+map('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+
 -- better up/down - allows moving to wrapped lines
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

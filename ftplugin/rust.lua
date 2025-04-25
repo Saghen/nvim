@@ -5,3 +5,4 @@ end
 map('Hover', 'K', function() vim.cmd.RustLsp({ 'hover', 'actions' }) end)
 map('Rebuild Proc Macros', '<leader>cr', function() vim.cmd.RustLsp('rebuildProcMacros') end)
 map('Render Diagnostic', '<leader>cd', function() vim.cmd.RustLsp({ 'renderDiagnostic', 'current' }) end)
+map('Open Docs.rs', '<leader>cD', function() vim.cmd.RustLsp({ 'openDocs' }) end)
