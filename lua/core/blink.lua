@@ -31,10 +31,7 @@ return {
     opts = {
       keymap = {
         preset = 'default',
-
         ['<C-g>'] = { 'accept' },
-        ['<C-t>'] = { 'select_prev' },
-        ['<C-d>'] = { 'select_next' },
       },
       appearance = {
         nerd_font_variant = 'normal',
