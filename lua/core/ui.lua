@@ -27,6 +27,8 @@ return {
         {
           mode = 'n',
           { '<leader>a', group = 'AI' },
+          { '<leader>ag', group = 'AI Prompt' },
+          { '<leader>aw', group = 'AI Whisper' },
           { '<leader>b', group = 'Buffers' },
           { '<leader>c', group = 'Coding' },
           { '<leader>d', group = 'Debug' },
@@ -42,9 +44,6 @@ return {
           { '<leader>u', group = 'Options' },
           { '<leader>w', group = 'Windows' },
           { '<leader>x', group = 'Quickfix' },
-          { '<C-a>', group = 'AI' },
-          { '<C-a>g', group = 'AI Prompt' },
-          { '<C-a>w', group = 'AI Whisper' },
         },
       },
       icons = {
@@ -80,6 +79,7 @@ return {
         progress = { enabled = false },
         signature = { enabled = false },
       },
+      notify = { enabled = false },
     },
   },
 
