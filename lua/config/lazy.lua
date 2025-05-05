@@ -52,4 +52,4 @@ require('lazy').setup({
 })
 
 require('config.keymaps')
--- vim.lsp.enable('efm')
+vim.lsp.enable('efm')

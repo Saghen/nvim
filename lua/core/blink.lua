@@ -32,6 +32,8 @@ return {
       keymap = {
         preset = 'default',
         ['<C-g>'] = { 'accept' },
+        ['<C-d>'] = { 'select_next' },
+        ['<C-c>'] = { 'select_prev' },
       },
       appearance = {
         nerd_font_variant = 'normal',
@@ -42,9 +44,7 @@ return {
           auto_brackets = { semantic_token_resolution = { blocked_filetypes = { 'typescriptreact', 'typescript' } } },
         },
       },
-      sources = {
-        default = { 'lsp', 'buffer', 'path' },
-      },
+      sources = { default = { 'lsp', 'buffer', 'path' } },
       fuzzy = {
         implementation = 'rust',
         prebuilt_binaries = { ignore_version_mismatch = true },

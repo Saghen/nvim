@@ -81,7 +81,26 @@ return {
         postfix('/brd', {
           d(1, function(_, parent) return sn(nil, { t('[' .. parent.env.POSTFIX_MATCH .. ']') }) end),
         }),
+
+        s(
+          'example2_fmt',
+          fmt(
+            [[
+            if {} then
+              {}
+            end{} 
+            ]],
+            {
+              i(1, 'not now'),
+              i(2, 'when'),
+              i(0),
+            }
+          )
+        ),
       })
+
+      local ms = ls.multi_snippet
+      ls.add_snippets('all', { ms({ 'a', { trig = 'bb', snippetType = 'autosnippet' } }, { t('b-bb-bbb-bees!') }) })
 
       -- custom snippets
       ls.add_snippets('markdown', {

@@ -99,7 +99,7 @@ return {
         BlinkCmpGhostText = { fg = '$grey' },
         BlinkCmpMenu = { bg = '$bg1' },
         BlinkCmpMenuSelection = { bg = '$bg3' },
-        BlinkCmpLabelMatch = { fmt = 'bold' },
+        BlinkCmpLabelMatch = { fmt = 'bold', fg = '$fg' },
         BlinkCmpLabelDetail = { fg = '$light_grey' },
         BlinkCmpLabelDescription = { fg = '$light_grey' },
         BlinkCmpDoc = { bg = '$bg_d' },
