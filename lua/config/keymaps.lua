@@ -36,7 +36,7 @@ map({ 'n', 't' }, '<S-Right>', '<cmd>wincmd l<cr>', { desc = 'Go to right window
 
 local function switch_to_nth_previous_buffer(n)
   return function()
-    local prev_buf = require('tuque.buffer-history').get_nth_previous_buffer(n + 1)
+    local prev_buf = require('tuque.buffer-history').get_nth_previous_buffer(n)
     if prev_buf ~= nil then
       vim.api.nvim_win_set_buf(0, prev_buf)
     else
@@ -81,6 +81,11 @@ map({ 'n', 's' }, '<esc>', function()
   vim.snippet.stop()
   return '<esc>'
 end, { expr = true, desc = 'Escape and clear hlsearch/snippet' })
+
+-- Terminal
+map('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
+map({ 'n', 'v' }, '`', function() require('tuque.term').cycle() end, { desc = 'Cycle terminal' })
+map({ 'n', 'i', 't', 'v' }, '<C-`>', function() require('tuque.term').create() end, { desc = 'Create terminal' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next search result' })

@@ -1,9 +1,6 @@
 return {
   -- forces plugins to use CursorLineSign
-  {
-    'jake-stewart/force-cul.nvim',
-    opts = {},
-  },
+  { 'jake-stewart/force-cul.nvim', opts = {} },
 
   -- shows available keymaps as you type
   {
@@ -88,11 +85,32 @@ return {
     'b0o/incline.nvim',
     event = 'VeryLazy',
     opts = {
+      ignore = { buftypes = function(_, buftype) return buftype ~= '' and buftype ~= 'terminal' end },
       window = {
         padding = 0,
         margin = { horizontal = 0 },
       },
       render = function(props)
+        -- Terminal rendering
+        local term_manager = require('tuque.term')
+        local term_idx = term_manager.get_current_term_idx(props.win)
+        if term_idx ~= nil then
+          local terms = term_manager.get_terms()
+          local term_components = {}
+          for i, term in ipairs(terms) do
+            local highlight = i == term_idx and 'TerminalWinbarFocus'
+              or term:is_visible() and 'TerminalWinbarVisible'
+              or 'Normal'
+            table.insert(term_components, { ' ' .. i .. ' ', group = highlight })
+          end
+
+          table.insert(term_components, 1, '   ')
+
+          return term_components
+        end
+
+        -- Typical rendering
+
         local devicons = require('nvim-web-devicons')
 
         -- Filename
@@ -135,7 +153,7 @@ return {
 
   -- partition UI elements
   {
-    enabled = os.getenv('NVIM_DEV') == nil,
+    enabled = false,
     'folke/edgy.nvim',
     event = 'VeryLazy',
     opts = {

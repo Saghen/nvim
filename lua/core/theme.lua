@@ -147,6 +147,9 @@ return {
         TelescopePreviewTitle = { fg = '$blue' },
         TelescopePromptTitle = { fg = '$blue' },
         TelescopeResultsTitle = { fg = '$blue' },
+
+        TerminalWinbarFocus = { bg = '$blue', fg = '$black' },
+        TerminalWinbarVisible = { bg = '$purple', fg = '$black' },
       },
     },
   },

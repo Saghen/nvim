@@ -1,20 +1,3 @@
---- @module 'toggleterm'
---- @type Terminal
-MainTerminal = nil
-
-local toggle_term = function()
-  if not MainTerminal:is_open() then
-    MainTerminal:open()
-  elseif not MainTerminal:is_focused() then
-    MainTerminal:focus()
-    vim.schedule(function()
-      vim.cmd('startinsert') -- switch to terminal mode
-    end)
-  else
-    vim.cmd('wincmd p')
-  end
-end
-
 return {
   -- nested neovim instances open in the parent
   {
@@ -33,42 +16,13 @@ return {
     },
   },
 
-  -- terminal
+  -- edit terminal in normal mode
   {
-    'akinsho/nvim-toggleterm.lua',
-    lazy = false,
-    keys = {
-      {
-        '`',
-        toggle_term,
-        desc = 'Focus terminal',
-      },
-      {
-        '<C-`>',
-        toggle_term,
-        desc = 'Focus terminal',
-        mode = 'i',
-      },
-    },
+    'chomosuke/term-edit.nvim',
+    event = 'TermOpen',
+    version = '1.*',
     opts = {
-      autochdir = true,
-      auto_scroll = false,
-      shade_terminals = false,
-      start_in_insert = true,
-      insert_mappings = true,
-      terminal_mappings = true,
-      open_mapping = [[<C-\>]],
+      prompt_end = '~> ',
     },
-    config = function(_, opts)
-      require('toggleterm').setup(opts)
-
-      MainTerminal = require('toggleterm.terminal').Terminal:new()
-
-      -- We can use <esc><esc> to be able to use a single <esc> in the terminal Vi mode.
-      -- vim.api.nvim_buf_set_keymap(0, "t", "<esc><esc>", [[<C-\><C-o>:ToggleTerm<CR>]], { noremap = true })
-      -- or we can use a single escape
-      -- https://github.com/akinsho/toggleterm.nvim/issues/365
-      vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], { noremap = true })
-    end,
   },
 }
