@@ -30,8 +30,8 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end),
 })
 
--- Update left side padding when a window is opened
-vim.api.nvim_create_autocmd('WinEnter', {
+-- Update left side padding when a buffer enters a window
+vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function()
     for _, term in ipairs(Manager.get_terms()) do
       term:update_padding()
@@ -39,6 +39,8 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
+-- Run on BufLeave as well since ModeChanged doesn't fire when switching from terminal buffer
+-- to another buffer, even though the mode changes
 vim.api.nvim_create_autocmd('ModeChanged', {
   callback = function()
     for _, term in ipairs(Manager.get_terms()) do

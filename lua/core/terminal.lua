@@ -18,11 +18,11 @@ return {
 
   -- edit terminal in normal mode
   {
-    'chomosuke/term-edit.nvim',
-    event = 'TermOpen',
-    version = '1.*',
+    dev = true,
+    'xb-bx/editable-term.nvim',
     opts = {
-      prompt_end = '~> ',
+      promts = { ['~> '] = {} },
+      wait_for_keys_delay = 10,
     },
   },
 }

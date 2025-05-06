@@ -63,16 +63,12 @@ end
 --- the CursorLineSign highlight
 function Terminal:update_cursorline_highlight()
   local mode = vim.api.nvim_get_mode().mode
-
-  local wins = vim.api.nvim_tabpage_list_wins(0)
-  local visible_wins = {}
-  for _, win in ipairs(wins) do
-    if vim.api.nvim_win_get_buf(win) == self.buf then table.insert(visible_wins, win) end
-  end
-
   local winhighlight = mode == 't' and 'CursorLineSign:Normal,CursorLineNr:Normal' or ''
-  for _, win in ipairs(wins) do
-    vim.api.nvim_set_option_value('winhighlight', winhighlight, { scope = 'local', win = win })
+
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_get_buf(win) == self.buf then
+      vim.api.nvim_set_option_value('winhighlight', winhighlight, { scope = 'local', win = win })
+    end
   end
 end
 

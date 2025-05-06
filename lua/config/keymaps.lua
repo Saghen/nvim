@@ -2,8 +2,7 @@ local map = require('tuque.utils').map
 
 -- never use the cmdline window, so remap q: to :q
 -- which is what i usually meant
--- TODO: causes a delay on `q` in trouble window
--- map('n', 'q:', ':q<cr>', { desc = 'Quit' })
+map('n', 'q:', ':q<cr>', { desc = 'Quit' })
 
 map('n', '-', '``', { desc = 'Jump to last edit location' })
 map('n', "'", '`') -- To make room for ` as terminal key
@@ -25,14 +24,24 @@ map({ 'v', 'n' }, 'gh', '0', { noremap = true, silent = true })
 map({ 'v', 'n' }, 'gs', '^', { noremap = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map({ 'n', 't' }, '<C-h>', '<cmd>wincmd h<cr>', { desc = 'Go to left window' })
-map({ 'n', 't' }, '<C-j>', '<cmd>wincmd j<cr>', { desc = 'Go to lower window' })
-map({ 'n', 't' }, '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to upper window' })
+map({ 'n' }, '<C-h>', '<cmd>wincmd h<cr>', { desc = 'Go to left window' })
+map({ 'n' }, '<C-j>', '<cmd>wincmd j<cr>', { desc = 'Go to lower window' })
+map({ 'n' }, '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to upper window' })
 map({ 'n' }, '<C-l>', '<cmd>wincmd l<cr>', { desc = 'Go to right window' })
-map({ 'n', 't' }, '<S-Left>', '<cmd>wincmd h<cr>', { desc = 'Go to left window', remap = true })
-map({ 'n', 't' }, '<S-Down>', '<cmd>wincmd j<cr>', { desc = 'Go to lower window', remap = true })
-map({ 'n', 't' }, '<S-Up>', '<cmd>wincmd k<cr>', { desc = 'Go to upper window', remap = true })
-map({ 'n', 't' }, '<S-Right>', '<cmd>wincmd l<cr>', { desc = 'Go to right window', remap = true })
+
+map('t', '<C-h>', '<C-\\><C-n><cmd>wincmd h<cr>', { noremap = true })
+map('t', '<C-j>', '<C-\\><C-n><cmd>wincmd j<cr>', { noremap = true })
+map('t', '<C-k>', '<C-\\><C-n><cmd>wincmd k<cr>', { noremap = true })
+
+map('n', '<S-Left>', '<cmd>wincmd h<cr>', { desc = 'Go to left window', remap = true })
+map('n', '<S-Down>', '<cmd>wincmd j<cr>', { desc = 'Go to lower window', remap = true })
+map('n', '<S-Up>', '<cmd>wincmd k<cr>', { desc = 'Go to upper window', remap = true })
+map('n', '<S-Right>', '<cmd>wincmd l<cr>', { desc = 'Go to right window', remap = true })
+
+map('t', '<S-Left>', '<C-\\><C-n><cmd>wincmd h<cr>', { noremap = true })
+map('t', '<S-Down>', '<C-\\><C-n><cmd>wincmd j<cr>', { noremap = true })
+map('t', '<S-Up>', '<C-\\><C-n><cmd>wincmd k<cr>', { noremap = true })
+map('t', '<S-Right>', '<C-\\><C-n><cmd>wincmd l<cr>', { noremap = true })
 
 local function switch_to_nth_previous_buffer(n)
   return function()
@@ -87,7 +96,7 @@ map('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
 map({ 'n', 'v' }, '`', function() require('tuque.term').cycle() end, { desc = 'Cycle terminal' })
 map({ 'n', 'i', 't', 'v' }, '<C-`>', function() require('tuque.term').create() end, { desc = 'Create terminal' })
 
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- https://github.com/mhinz/vim-galre#saner-behavior-of-n-and-n
 map('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next search result' })
 map({ 'x', 'o' }, 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next search result' })
 map('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev search result' })
