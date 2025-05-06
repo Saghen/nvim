@@ -1,7 +1,14 @@
 local function gitsigns_cmd(cmd)
+  local has_attached = false
   return function()
-    vim.cmd('Gitsigns attach')
-    vim.cmd('Gitsigns ' .. cmd)
+    if not has_attached then
+      vim.cmd('Gitsigns attach')
+      has_attached = true
+
+      vim.defer_fn(function() vim.cmd('Gitsigns ' .. cmd) end, 50)
+    else
+      vim.cmd('Gitsigns ' .. cmd)
+    end
   end
 end
 
