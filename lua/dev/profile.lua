@@ -58,7 +58,8 @@ return {
         -- profile.ignore('vim.tbl_*')
         -- profile.ignore('vim.shared.*')
         -- profile.ignore('vim._editor.*')
-        -- profile.ignore('blink.cmp.windows.lib.render.*')
+        profile.ignore('blink.cmp.completion.windows.render.*')
+        profile.ignore('blink.cmp.fuzzy.sort.*')
         -- profile.ignore('blink.cmp.windows.render_item*')
         profile.instrument(range)
         if should_profile:lower():match('^start') then profile.start(range) end

@@ -39,6 +39,21 @@ function Terminal:focus_and_enter_insert()
   vim.cmd('startinsert')
 end
 
+function Terminal:focus_existing_and_enter_insert()
+  -- Find the first window with this terminal and focus it
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  for _, win in ipairs(wins) do
+    if vim.api.nvim_win_get_buf(win) == self.buf then
+      vim.api.nvim_set_current_win(win)
+      vim.cmd('startinsert')
+      return
+    end
+  end
+
+  -- Not visible, so focus in the cuurrent window
+  self:focus_and_enter_insert()
+end
+
 --- Use the signcolumn as padding on the left side for when there's more than one window
 --- open in the current tab
 function Terminal:update_padding()
@@ -63,10 +78,11 @@ end
 --- the CursorLineSign highlight
 function Terminal:update_cursorline_highlight()
   local mode = vim.api.nvim_get_mode().mode
-  local winhighlight = mode == 't' and 'CursorLineSign:Normal,CursorLineNr:Normal' or ''
 
+  local curr_win = vim.api.nvim_get_current_win()
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
     if vim.api.nvim_win_get_buf(win) == self.buf then
+      local winhighlight = (curr_win == win and mode ~= 'nt') and 'CursorLineSign:Normal,CursorLineNr:Normal' or ''
       vim.api.nvim_set_option_value('winhighlight', winhighlight, { scope = 'local', win = win })
     end
   end

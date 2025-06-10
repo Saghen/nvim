@@ -2,9 +2,9 @@ local Terminal = require('tuque.term.term')
 
 --- @class tuque.TerminalManager
 local Manager = {
-  --- @type Terminal[]
+  --- @type tuque.Terminal[]
   terms = {},
-  --- @type Terminal[]
+  --- @type tuque.Terminal[]
   term_history = {},
 }
 
@@ -86,9 +86,11 @@ function Manager.cycle()
 
   -- No terminal focused
   if current_term_idx == nil then
+    -- Focus the only existing terminal
+    if #terms == 1 then
+      terms[1]:focus_existing_and_enter_insert()
     -- Focus the last terminal
-    -- TODO: skip existing visible terminals
-    if #terms > 0 then
+    elseif #terms > 0 then
       Manager.focus_last()
     -- Create a new terminal and focus it
     else

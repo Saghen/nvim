@@ -1,3 +1,5 @@
+vim.api.nvim_create_autocmd('InsertLeave', { callback = vim.snippet.stop })
+
 return {
   -- autocomplete
   {
@@ -120,28 +122,18 @@ return {
         agents = {
           {
             provider = 'openrouter',
-            name = 'Claude 3.7 Sonnet',
+            name = 'Claude 4 Sonnet',
             chat = true,
             command = true,
-            model = 'anthropic/claude-3.7-sonnet',
+            model = 'anthropic/claude-sonnet-4',
             system_prompt = '',
           },
           {
             provider = 'openrouter',
-            name = 'Gemini 2.5 Pro',
+            name = 'Claude 4 Opus',
             chat = true,
             command = true,
-            -- string with model name or table with model name and parameters
-            model = 'google/gemini-2.5-pro-preview-03-25',
-            system_prompt = '',
-          },
-          {
-            provider = 'openrouter',
-            name = 'Gemini 2.5 Flash',
-            chat = true,
-            command = true,
-            -- string with model name or table with model name and parameters
-            model = 'google/gemini-2.5-flash-preview',
+            model = 'anthropic/claude-opus-4',
             system_prompt = '',
           },
 

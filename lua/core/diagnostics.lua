@@ -10,6 +10,7 @@ return {
   {
     'folke/trouble.nvim',
     dependencies = { 'rachartier/tiny-devicons-auto-colors.nvim' },
+    cmd = 'Trouble',
     keys = {
       {
         '<leader>xx',

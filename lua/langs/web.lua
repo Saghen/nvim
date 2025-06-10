@@ -1,12 +1,5 @@
--- LSPs
-vim.api.nvim_create_autocmd('BufRead', {
-  pattern = { '*.tsx', '*.jsx', '*.ts', '*.js' },
-  callback = function() vim.lsp.enable('vtsls') end,
-})
-vim.api.nvim_create_autocmd('BufRead', {
-  pattern = { '*.css' },
-  callback = function() vim.lsp.enable('css') end,
-})
+vim.lsp.enable('vtsls')
+vim.lsp.enable('cssls')
 
 return {
   -- auto pairs for JSX

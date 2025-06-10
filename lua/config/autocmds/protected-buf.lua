@@ -2,7 +2,7 @@ local protected_filetypes = { 'blink-tree', 'toggleterm', 'AvanteAsk', 'Avante',
 
 local function get_win_to_buf_map()
   local win_to_buf_map = {}
-  local wins = vim.api.nvim_list_wins()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
   for _, win in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(win)
     if vim.api.nvim_buf_is_valid(buf) then win_to_buf_map[win] = buf end

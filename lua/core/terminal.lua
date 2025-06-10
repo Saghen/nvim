@@ -15,14 +15,4 @@ return {
       window = { open = 'smart' },
     },
   },
-
-  -- edit terminal in normal mode
-  {
-    dev = true,
-    'xb-bx/editable-term.nvim',
-    opts = {
-      promts = { ['~> '] = {} },
-      wait_for_keys_delay = 10,
-    },
-  },
 }

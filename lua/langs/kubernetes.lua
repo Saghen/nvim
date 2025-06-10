@@ -23,8 +23,8 @@ map('v', '<leader>ka', function()
   local text = vim.fn.getreg('z')
   write_file('/tmp/apply.yaml', text)
 
-  if not MainTerminal:is_open() then MainTerminal:open() end
-  MainTerminal:focus()
+  local success = pcall(require('tuque.term').focus_last)
+  if not success then require('tuque.term').cycle() end
 
   vim.schedule(function()
     vim.cmd('startinsert')
@@ -39,8 +39,8 @@ map('v', '<leader>kd', function()
   local text = vim.fn.getreg('z')
   write_file('/tmp/delete.yaml', text)
 
-  if not MainTerminal:is_open() then MainTerminal:open() end
-  MainTerminal:focus()
+  local success = pcall(require('tuque.term').focus_last)
+  if not success then require('tuque.term').cycle() end
 
   vim.schedule(function()
     vim.cmd('startinsert')

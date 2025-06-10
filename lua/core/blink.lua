@@ -53,14 +53,14 @@ return {
       cmdline = {
         keymap = {
           preset = 'inherit',
-          ['<Tab>'] = { 'accept', 'fallback' },
+          ['<Tab>'] = { 'show', 'accept', 'fallback' },
         },
         completion = { menu = { auto_show = true }, ghost_text = { enabled = false } },
       },
 
       -- snippets = { preset = 'luasnip' },
 
-      signature = { enabled = true, window = { show_documentation = false } },
+      signature = { enabled = false, window = { show_documentation = false } },
     },
     opts_extend = { 'sources.default' },
   },
