@@ -13,6 +13,27 @@ return {
   },
 
   {
+    'saghen/blink.indent',
+    opts = {
+      enabled = true,
+      scope = {
+        highlights = {
+          'RainbowOrange',
+          'RainbowPurple',
+          'RainbowBlue',
+        },
+        underline = {
+          highlights = {
+            'RainbowOrangeUnderline',
+            'RainbowPurpleUnderline',
+            'RainbowBlueUnderline',
+          },
+        },
+      },
+    },
+  },
+
+  {
     'saghen/blink.pairs',
     dev = true,
     --- @module 'blink.pairs'
@@ -148,23 +169,6 @@ return {
         enabled = true,
         mapping = {
           selection = { 'm', 'n', 'e', 'i', 'a', 'r', 's', 't' },
-        },
-      },
-      indent = {
-        enabled = true,
-        scope = {
-          highlights = {
-            'RainbowOrange',
-            'RainbowPurple',
-            'RainbowBlue',
-          },
-          underline = {
-            highlights = {
-              'RainbowOrangeUnderline',
-              'RainbowPurpleUnderline',
-              'RainbowBlueUnderline',
-            },
-          },
         },
       },
       tree = { enabled = true },
