@@ -43,7 +43,6 @@ return {
 
   {
     'saghen/blink.cmp',
-    event = 'InsertEnter',
     version = vim.fn.getenv('BLINK_VERSION') or false,
     dev = vim.fn.getenv('BLINK_VERSION') == vim.NIL,
     -- build = 'cargo build --release',
@@ -81,7 +80,7 @@ return {
 
       -- snippets = { preset = 'luasnip' },
 
-      signature = { enabled = false, window = { show_documentation = false } },
+      signature = { enabled = true, window = { show_documentation = false } },
     },
     opts_extend = { 'sources.default' },
   },
