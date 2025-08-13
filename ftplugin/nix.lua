@@ -1,6 +1,4 @@
 vim.lsp.config('nil_ls', {
-  settings = { ['nil'] = {
-    formatting = { command = 'nixfmt', args = { '--indent-with-tab' } },
-  } },
+  settings = { ['nil'] = { formatting = { command = 'nixfmt' } } },
 })
 vim.lsp.enable('nil_ls')
