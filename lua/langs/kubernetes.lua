@@ -54,8 +54,9 @@ end, { desc = 'Delete selected yaml' })
 return {
   -- UI
   {
-    dev = true,
     'ramilito/kubectl.nvim',
+    version = '2.*',
+    dependencies = 'saghen/blink.download',
     keys = {
       {
         '<leader>ik',
