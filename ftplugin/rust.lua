@@ -4,6 +4,8 @@ vim.g.rustaceanvim = {
       ['rust-analyzer'] = {
         -- https://github.com/napi-rs/napi-rs/issues/944#issuecomment-1013002760
         procMacro = { ignored = { ['napi-derive'] = { 'napi' } } },
+        -- build in sub directory to prevent locking
+        cargo = { targetDir = true },
       },
     },
   },
