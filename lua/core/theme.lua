@@ -87,6 +87,7 @@ return {
         BlinkPairsOrange = { fg = '$orange' },
         BlinkPairsPurple = { fg = '$purple' },
         BlinkPairsBlue = { fg = '$blue' },
+        BlinkPairsUnmatched = { fg = '$red' },
         MatchParen = { fg = '$yellow', bg = 'transparent' },
 
         DashboardHeader = { fg = '$blue' },
