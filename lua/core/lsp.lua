@@ -109,7 +109,7 @@ return {
         })
       end
 
-      set_formatter('python', 'black')
+      set_formatter('python', 'ruff')
       set_formatter('lua', 'stylua')
 
       -- stylua: ignore
