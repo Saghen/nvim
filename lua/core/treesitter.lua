@@ -4,11 +4,16 @@ return {
     'nvim-treesitter/nvim-treesitter',
     event = 'BufRead',
     build = ':TSUpdate',
-    ---@type TSConfig
-    ---@diagnostic disable-next-line: missing-fields
+    --- @module 'nvim-treesitter.configs'
+    --- @type TSConfig
+    --- @diagnostic disable-next-line: missing-fields
     opts = {
       highlight = { enable = true },
-      indent = { enable = true },
+      -- works poorly for lists in yaml and dioxus macros
+      indent = {
+        enable = false,
+        -- enable = function() return vim.bo.ft ~= 'yaml' and vim.bo.ft ~= 'rust' end,
+      },
       incremental_selection = {
         enable = true,
         keymaps = { node_incremental = 'v', node_decremental = 'V' },
