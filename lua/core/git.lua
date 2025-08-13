@@ -1,31 +1,4 @@
-local function gitsigns_cmd(cmd)
-  local has_attached = false
-  return function()
-    if not has_attached then
-      vim.cmd('Gitsigns attach')
-      has_attached = true
-
-      vim.defer_fn(function() vim.cmd('Gitsigns ' .. cmd) end, 50)
-    else
-      vim.cmd('Gitsigns ' .. cmd)
-    end
-  end
-end
-
 return {
-  {
-    enabled = os.getenv('NVIM_DEV') == nil,
-    'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
-    keys = {
-      { '<leader>gS', gitsigns_cmd('stage_hunk'), desc = 'Stage hunk' },
-      { '<leader>gu', gitsigns_cmd('undo_stage_hunk'), desc = 'Undo stage hunk' },
-      { '<leader>gb', gitsigns_cmd('blame'), desc = 'Blame' },
-      { '<leader>gd', gitsigns_cmd('diffthis'), desc = 'Diff this' },
-    },
-    opts = { auto_attach = false },
-  },
-
   -- convert git branches/files to remote URLs
   {
     'linrongbin16/gitlinker.nvim',
@@ -43,56 +16,6 @@ return {
       { '<leader>goB', '<cmd>GitLink! blame<cr>', mode = { 'n', 'v' }, desc = 'Open blame in browser' },
     },
     opts = {},
-  },
-
-  -- ephemerally open git repositories
-  {
-    'moyiz/git-dev.nvim',
-    cmd = { 'GitDevOpen', 'GitDevToggleUI', 'GitDevRecents', 'GitDevCleanAll' },
-    keys = {
-      {
-        '<leader>gt',
-        function()
-          local repo = vim.fn.input('Repository name / URI: ')
-          if repo ~= '' then require('git-dev').open(repo) end
-        end,
-        desc = 'Open remote git repo temporarily',
-      },
-      { '<leader>gsr', '<cmd>GitDevRecents<cr>', desc = 'Recent repositories' },
-    },
-    opts = {
-      ephemeral = false, -- don't delete after neovim exits
-      read_only = false, -- don't make every file read-only
-      -- The actual `open` behavior.
-      ---@param dir string The path to the local repository.
-      ---@param repo_uri string The URI that was used to clone this repository.
-      ---@param selected_path? string A relative path to a file in this repository.
-      opener = function(dir, repo_uri, selected_path)
-        require('git-dev').ui:print('Opening ' .. repo_uri)
-
-        -- open selected file, readme or fallback to directory
-        if selected_path == nil then
-          local files = vim.fn.glob(dir .. '/readme*', nil, true)
-          if #files > 0 then
-            vim.cmd('edit ' .. vim.fn.fnameescape(files[1]))
-          else
-            vim.cmd('edit ' .. dir)
-          end
-        else
-          vim.cmd('edit ' .. dir .. '/' .. selected_path)
-        end
-
-        -- open blink tree
-        vim.cmd('BlinkTree open silent')
-      end,
-      ui = {
-        close_after_ms = 0, -- close UI immediately
-      },
-    },
-    config = function(_, opts)
-      require('git-dev').setup(opts)
-      require('telescope').load_extension('git_dev')
-    end,
   },
 
   -- telescope pickers

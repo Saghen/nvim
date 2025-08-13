@@ -23,7 +23,6 @@ return {
       -- find
       { '<leader>ff', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
       { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
-      -- { '<leader>fR', Util.telescope('oldfiles', { cwd = vim.loop.cwd() }), desc = 'Recent (cwd)' },
       {
         '<leader>fc',
         '<cmd>lua require("telescope.builtin").find_files({ cwd = "~/.config" })<cr>',

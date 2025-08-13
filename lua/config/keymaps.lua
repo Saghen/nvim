@@ -137,10 +137,10 @@ map('n', ']w', diagnostic_goto(1, 'WARN'), { desc = 'Next Warning' })
 map('n', '[w', diagnostic_goto(-1, 'WARN'), { desc = 'Prev Warning' })
 
 -- windows
-map('n', '<leader>ww', '<C-W>p', { desc = 'Other window', remap = true })
-map('n', '<leader>wd', '<C-W>c', { desc = 'Delete window', remap = true })
-map('n', '<leader>wh', '<C-W>s', { desc = 'Split window below', remap = true })
-map('n', '<leader>wv', '<C-W>v', { desc = 'Split window right', remap = true })
+map('n', '<leader>ww', '<C-W>p', { desc = 'Other window' })
+map('n', '<leader>wd', '<C-W>c', { desc = 'Delete window' })
+map('n', '<leader>wh', '<C-W>s<C-W>j', { desc = 'Split window below' })
+map('n', '<leader>wv', '<C-W>v<C-W>l', { desc = 'Split window right' })
 
 -- clipboard
 map('v', '<leader>p', '"+p', { desc = 'Paste from clipboard' })

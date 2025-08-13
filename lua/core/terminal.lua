@@ -1,6 +1,7 @@
 return {
   -- nested neovim instances open in the parent
   {
+    enabled = os.getenv('NVIM_DEV') == nil,
     'willothy/flatten.nvim',
     version = '*',
     lazy = false,

@@ -14,8 +14,10 @@ return {
 
   {
     'saghen/blink.indent',
+    dev = true,
+    --- @module 'blink.indent'
+    --- @type blink.indent.Config
     opts = {
-      enabled = true,
       scope = {
         highlights = {
           'RainbowOrange',
@@ -38,7 +40,7 @@ return {
     dev = true,
     --- @module 'blink.pairs'
     --- @type blink.pairs.Config
-    opts = { debug = false },
+    opts = {},
   },
 
   {
@@ -50,7 +52,7 @@ return {
     --- @type blink.cmp.Config
     opts = {
       keymap = {
-        preset = 'default',
+        preset = 'super-tab',
         ['<C-g>'] = { 'accept' },
         ['<C-d>'] = { 'select_next' },
         ['<C-c>'] = { 'select_prev' },

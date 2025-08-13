@@ -5,5 +5,6 @@ vim.filetype.add({
   },
 })
 
-vim.lsp.enable('terraformls')
+-- TODO: freezes editor in abyss
+-- vim.lsp.enable('terraformls')
 vim.lsp.enable('tflint')

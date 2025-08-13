@@ -53,4 +53,5 @@ require('lazy').setup({
 
 require('config.keymaps')
 require('tuque.term')
+
 vim.lsp.enable('efm')
